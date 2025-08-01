@@ -5,7 +5,6 @@ import Login from './Components/Pages/Login';
 import ResourceCenter from './/Components/Pages/Resourcecenter';
 import Navbar from './Components/Frontend/Navbar';
 import Footer from './Components/Frontend/Footer';
-import Notification from  './Components/Pages/Notification';
 import Button from 'react-bootstrap/esm/Button';
 import Dashboard from './Components/Pages/Dashboard';
 import Task from './Components/Pages/Task';
@@ -53,13 +52,6 @@ const router = createBrowserRouter([
       <Navbar/>
       <Footer/>
     </div>,
-},
-{
-    path:"/notification",
-    element:<div>
-      <Notification/>
-    </div>,
-    
 },
 {
   path:"/sos",
@@ -125,10 +117,7 @@ const router = createBrowserRouter([
   path:"/work",
   element:<Work/>
 },
-{
-  path:"/notification",
-  element:<Notification/>
-},
+
 
 ])
 
