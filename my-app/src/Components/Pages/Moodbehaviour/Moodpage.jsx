@@ -12,7 +12,7 @@ const Moodpage = () => {
 
   return (
     <div style={{ padding: '20px', maxWidth: '700px', margin: 'auto', color:"brown" }}>
-      <h2  > Mood & Behavior Tracker</h2>
+      <h2 style={{color:"brown" ,paddingBottom:"20px"}}  > Mood & Behavior Tracker</h2>
       <MoodForm onAdd={addMoodEntry} />
       <MoodProcess entries={moodEntries} />
       <MoodLog entries={moodEntries} />

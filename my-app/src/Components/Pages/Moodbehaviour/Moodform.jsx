@@ -20,11 +20,11 @@ const Moodform = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+    <form onSubmit={handleSubmit} style={{ marginBottom: '20px'  }}>
       
       <label>Select your mood:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-      <select value={mood} onChange={(e) => setMood(e.target.value)} required>
-        <option value=""> Choose </option>
+      <select style={{color:"skyblue",border:"1px solid brown"}}    value={mood} onChange={(e) => setMood(e.target.value)} required>
+        <option   style={{color:"skyblue"}}   value=""> Choose </option>
         <option value=" Happy">Happy</option>
         <option value=" Sad"> Sad</option>
         <option value=" Angry">Angry</option>
@@ -33,12 +33,12 @@ const Moodform = ({ onAdd }) => {
       </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <textarea
+      <textarea 
         placeholder="Add notes (optional)..."
         value={note}
         onChange={(e) => setNote(e.target.value)}
         rows="3"
-        style={{ display: 'block', marginTop: '10px', width: '100%' }}
+        style={{ display: 'block', marginTop: '20px', width: '100%',borderRadius:"7px",color:'brown',border:"2px solid brown" }}
       />
       <button   class="button-28"  type="submit" style={{ marginTop: '19px' }}>Add Entry</button>
     </form>

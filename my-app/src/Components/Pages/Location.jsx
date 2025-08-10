@@ -1,6 +1,7 @@
 import React from 'react'
 import Locationpage from './Locations/Locationpage'
 import {  NavLink } from 'react-router-dom';
+import Footer from '../Frontend/Footer.jsx'
 const Location = () => {
       const handleClick = () => {
     console.log("Button clicked!");
@@ -16,6 +17,8 @@ const Location = () => {
       
 
          <Locationpage/>
+
+         <Footer/>
    
     </>
     

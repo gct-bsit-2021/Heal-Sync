@@ -14,7 +14,7 @@ const About = () => {
                     <div>
                         <h4 style={{fontWeight:"bold",color:"brown"}}>How Do I Find a Caregiver with HealSync?</h4>
                         <Card style={{width:"28rem" ,fontSize:"14px",color:"brown",border:"none"}}>
-                        <p>Choosing to hire a caregiver is an important step, and at HealSync, we make the process easier. Theres no one-size-fits-all in caregiving, which is why our platform helps match you with caregivers and home care services that meet your loved ones unique needs.When you're ready, HealSync connects you with trusted care providers in your area. Our in-app guidance and support team are here to assist you—at no cost so you can confidently choose the right caregiver for your family.</p>
+                        <p>Choosing to hire a caregiver is an important step, and at HealSync, we make the process easier. Theres no one-size-fits-all in caregiving, which is why our platform helps match you with caregivers and home care services that meet your loved ones unique needs.When you're ready, HealSync connects you with trusted care providers in your area. Our in-app guidance and support team are here to assist you at no cost so you can confidently choose the right caregiver for your family.</p>
                         </Card>
                     </div>
                     <div>

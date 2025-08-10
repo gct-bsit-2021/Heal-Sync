@@ -1,13 +1,14 @@
 import React from 'react'
 import CalendarPage from './Appointments/CalendarPage';
 import {  NavLink } from 'react-router-dom';
+import Footer from '../Frontend/Footer';
 const Appointment = () => {
      const handleClick = () => {
     console.log("Button clicked!");
       };
   return (
     <>
-    <div  style={{backgroundColor:"#EAEBD0"}}>
+    <div  style={{}}>
     <NavLink to="/">
           <button style={{
             marginTop:"20px",backgroundColor:"brown",color:"burlywood"
@@ -16,6 +17,8 @@ const Appointment = () => {
          
 
           <CalendarPage/>
+
+          <Footer/>
           </div>
     </>
   )

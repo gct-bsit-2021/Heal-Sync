@@ -2,7 +2,6 @@ import React from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './Components/Pages/Home';
 import Login from './Components/Pages/Login';
-import ResourceCenter from './/Components/Pages/Resourcecenter';
 import Navbar from './Components/Frontend/Navbar';
 import Footer from './Components/Frontend/Footer';
 import Button from 'react-bootstrap/esm/Button';
@@ -17,6 +16,13 @@ import Healthmontorning from './Components/Pages/Healthmontorning';
 import Appointment from './Components/Pages/Appointment';
 import Sosbutton from './Components/Pages/Sosbutton';
 import Work from './Components/Pages/Work';
+import Heal from './Components/Pages/Heal';
+import Homecare from './Components/Pages/Homecare';
+import Logging from './Components/Pages/Logging';
+import Resource from './Components/Pages/Resource';
+import NotificationAlert from './Components/Pages/NotificationAlert';
+
+
 
 
 const router = createBrowserRouter([
@@ -39,19 +45,32 @@ const router = createBrowserRouter([
    
   
   },
-   {
-    path:"/resourcecenter",
-    element:<div>
-      <Navbar/>
-      <ResourceCenter/>
-    </div>,
-},
 {
     path:"/footer",
     element:<div>
       <Navbar/>
       <Footer/>
     </div>,
+},
+{
+  path:"/heal",
+  element:<Heal/>,
+},
+{
+  path:"/logging",
+  element:<Logging/>
+},
+{
+  path:"/notification",
+  element:<NotificationAlert/>,
+},
+{
+  path:"/resourcecenter",
+   element:<Resource/>
+},
+{
+  path:"/homecare",
+  element:<Homecare/>,
 },
 {
   path:"/sos",

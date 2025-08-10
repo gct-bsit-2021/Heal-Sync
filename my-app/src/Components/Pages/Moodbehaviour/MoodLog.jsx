@@ -3,7 +3,7 @@ import React from 'react';
 const MoodLog = ({ entries }) => {
   return (
     <div>
-      <h3  style={{color:"burlywood" }}> Mood Log</h3>
+      <h3  style={{color:"burlywood"  }}> Mood Log</h3>
       {entries.length === 0 ? (
         <p style={{color:"brown",paddingLeft:"54px" }}>No mood entries yet.</p>
       ) : (

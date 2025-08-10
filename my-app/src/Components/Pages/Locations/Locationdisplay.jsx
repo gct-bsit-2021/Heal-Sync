@@ -19,6 +19,7 @@ const Locationdisplay = ({ lat, lng }) => {
         style={{ marginTop: '17px', borderRadius: '8px' }}
       ></iframe>
     </div>
+    
   )
 }
 

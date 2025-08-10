@@ -25,10 +25,12 @@ const TaaskList = () => {
 
 
   return (
-    <div>
+    
+    <div style={{paddingLeft:"20px"}}>
     <TaskForm onAdd={addTask} />
       {tasks.length === 0 ? (
-        <p>No tasks yet.</p>
+        
+        <p  style={{paddingLeft:"50px",paddingTop:"20px",color:"brown",fontSize:"17px",fontWeight:"bold"}}>No tasks yet.</p>
       ) : (
         tasks.map(task => (
           <TaskItem

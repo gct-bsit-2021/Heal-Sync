@@ -11,9 +11,9 @@ const Moodprocess = ({ entries }) => {
   return (
     <>
        <div style={{ marginBottom: '10px' }}>
-      <h3> Mood Stats</h3>
-      <p>Most Frequent Mood: {mostCommonMood}</p>
-      <p>Recent Mood: {recentMood}</p>
+      <h3 style={{fontWeight:"bold",paddingBottom:"10px"}}> Mood Stats</h3>
+      <p style={{fontSize:"20px" ,paddingLeft:"2px"}}>Most Frequent Mood:   &nbsp; &nbsp;&nbsp;{mostCommonMood}</p>
+      <p   style={{fontSize:"20px",paddingLeft:"2px"}}>Recent Mood:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {recentMood}</p>
     </div>
     </>
   )

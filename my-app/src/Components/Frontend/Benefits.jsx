@@ -14,7 +14,7 @@ const Benefits = () => {
         <div className="benefitfirst">
         <div style={{paddingLeft:"30px", gap:"2rem ", width:"70%",paddingTop:"40px" ,color:"brown" }}>
         <h4 style={{fontWeight:"bold"}}>Benefits of in-home care</h4>
-        <Button  className="benefitbtn" style={{marginTop:"20px"}} variant="primary">Learn More About In Home Care</Button>
+        <Button href="/homecare"  className="benefitbtn" style={{marginTop:"20px"}} variant="primary">Learn More About In Home Care</Button>
         </div>
         <div className="benefitspic" style={{
             paddingTop:"40px"

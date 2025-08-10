@@ -9,7 +9,7 @@ const Working = () => {
   return (
     <>
       <div className="work">
-        <Card style={{ width: '56rem',height:"33rem" }}>
+        <Card style={{ width: '56rem',height:"33rem"}}>
      
       <Card.Body>
        <div className="workss" >
@@ -58,7 +58,7 @@ const Working = () => {
     </Card>
        </div>
       
-        <Button  href="/work" className="workbtn" style={{ marginTop:"60px"}} >Heal Sync</Button>
+        <Button  href="/heal" className="workbtn" style={{ marginTop:"60px"}} >Heal Sync</Button>
       </Card.Body>
     </Card>
       </div>
