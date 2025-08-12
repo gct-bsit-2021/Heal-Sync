@@ -5,6 +5,18 @@
   align-items: center;
   background: #EAEBD0;
 }
+.aa
+ {width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #EAEBD0;
+  outline: none;
+  background-color: #EAEBD0;
+  color: brown;
+  text-decoration: none;
+  
+}
 
 .login-form {
   background: #AF3E3E;
