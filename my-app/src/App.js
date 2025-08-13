@@ -1,5 +1,7 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Signup from './Components/Pages/Signup';  
+
 import Home from './Components/Pages/Home';
 import Login from './Components/Pages/Login';
 import Navbar from './Components/Frontend/Navbar';
@@ -22,9 +24,6 @@ import Logging from './Components/Pages/Logging';
 import Resource from './Components/Pages/Resource';
 import NotificationAlert from './Components/Pages/NotificationAlert';
 
-
-
-
 const router = createBrowserRouter([
   {
     path:"/",
@@ -32,67 +31,63 @@ const router = createBrowserRouter([
     <div>
       <Navbar/>
       <Home/>
-    </div>
-    ,
+    </div>,
   },
   
-   {
+  {
     path:"/login",
     element:<div>
       <Navbar/>
       <Login/>
     </div>,
-   
-  
   },
-{
+  {
     path:"/footer",
     element:<div>
       <Navbar/>
       <Footer/>
     </div>,
-},
-{
-  path:"/heal",
-  element:<Heal/>,
-},
-{
-  path:"/logging",
-  element:<Logging/>
-},
-{
-  path:"/notification",
-  element:<NotificationAlert/>,
-},
-{
-  path:"/resourcecenter",
-   element:<Resource/>
-},
-{
-  path:"/homecare",
-  element:<Homecare/>,
-},
-{
-  path:"/sos",
-  element:<div>
-  <Navbar/>
-  <Sosbutton/>
-  </div>,
-},
-{
+  },
+  {
+    path:"/heal",
+    element:<Heal/>,
+  },
+  {
+    path:"/logging",
+    element:<Logging/>
+  },
+  {
+    path:"/notification",
+    element:<NotificationAlert/>,
+  },
+  {
+    path:"/resourcecenter",
+    element:<Resource/>
+  },
+  {
+    path:"/homecare",
+    element:<Homecare/>,
+  },
+  {
+    path:"/sos",
+    element:<div>
+      <Navbar/>
+      <Sosbutton/>
+    </div>,
+  },
+  {
     path:"/button",
     element:<div>
       <Navbar/>
       <Button/>
     </div>,
   },
-{
+  {
     path:"/dashbord",
     element: <Dashboard/>,
-},
-
-{
-   path:"/task",
+  },
+  {
+    path:"/task",
     element:<div>
       <Task/>
     </div>,
@@ -102,10 +97,9 @@ const router = createBrowserRouter([
         element:<TaaskList/>,
       },
     ]
-},
-
-{
-   path:"/progress",
+  },
+  {
+    path:"/progress",
     element:<div>
       <Progress/>
     </div>,
@@ -115,43 +109,44 @@ const router = createBrowserRouter([
         element:<TaskList/>,
       },
     ]
-},
-{
-  path:"/mood",
-  element: <Mood/>,
-},
-{
-  path:"/location",
-  element:<Location/>
-},
-{
-  path:"/healthmontorning",
-  element:<Healthmontorning/>
-},
-{
-  path:"/calender",
-  element:<Appointment/>
-},
-{
-  path:"/work",
-  element:<Work/>
-},
-
-
+  },
+  {
+    path:"/mood",
+    element: <Mood/>,
+  },
+  {
+    path:"/location",
+    element:<Location/>
+  },
+  {
+    path:"/healthmontorning",
+    element:<Healthmontorning/>
+  },
+  {
+    path:"/calender",
+    element:<Appointment/>
+  },
+  {
+    path:"/work",
+    element:<Work/>
+  },
+  {
+    path: "/Sign",
+    element: (
+      <div>
+        <Navbar />
+        <Signup />
+      </div>
+    ),
+  },
 ])
 
 const App = () => {
-  
   return (
     <div>
       <RouterProvider router={router}/> 
-      </div>
-
-  
-     
+    </div>
   )
 }
 
 export default App
-
-

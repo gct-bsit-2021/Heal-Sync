@@ -1,28 +1,26 @@
-import React from 'react'
-import Locationpage from './Locations/Locationpage'
-import {  NavLink } from 'react-router-dom';
-import Footer from '../Frontend/Footer.jsx'
+import React from 'react';
+import LocationPage from './Locations/Locationpage';
+import { NavLink } from 'react-router-dom';
+import Footer from '../Frontend/Footer.jsx';
+
 const Location = () => {
-      const handleClick = () => {
+  const handleClick = () => {
     console.log("Button clicked!");
-      };
+  };
+
   return (
-
     <>
-    <div style={{paddingBottom:"20px"}}>
-   <NavLink to="/">
-         <button  onClick={handleClick}  class="button-52" >Go To Heal Sync</button>
-         </NavLink>
-         </div>
-      
+      <div style={{ paddingBottom: "20px" }}>
+        <NavLink to="/">
+          <button onClick={handleClick} className="button-52">Go To Heal Sync</button>
+        </NavLink>
+      </div>
 
-         <Locationpage/>
+      <LocationPage />
 
-         <Footer/>
-   
+      <Footer />
     </>
-    
-  )
-}
+  );
+};
 
-export default Location
+export default Location;

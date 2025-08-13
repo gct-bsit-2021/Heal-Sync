@@ -1,19 +1,23 @@
 import React from 'react';
 
-const HealthStatus = ({ records }) => {
-  if (records.length === 0) return null;
-
-  const latest = records[0];
-
+const HealthLog = ({ records }) => {
   return (
-    <div style={{ marginBottom: '40px',width:"100%",backgroundColor:"brown",border:"2px solid #EAEBD0 " }}>
-      <h3 style={{color:"brown",fontWeight:"bold" ,backgroundColor:" #EAEBD0"}}> Latest Record</h3>
-      <p style={{color:" #EAEBD0", paddingLeft:"50px",fontWeight:"bold"}}>{latest.date}</p>
-      <p style={{color:" #EAEBD0", paddingLeft:"50px",fontWeight:"bold"}}> Blood Pressure: &nbsp;  &nbsp; &nbsp; &nbsp;{latest.systolic}/{latest.diastolic} mmHg</p>
-      <p style={{color:" #EAEBD0", paddingLeft:"50px",fontWeight:"bold"}}> Weight:  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{latest.weight} kg</p>
-      <p style={{color:" #EAEBD0", paddingLeft:"50px",fontWeight:"bold"}}> Glucose: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  {latest.glucose} mg/dL</p>
+    <div style={{ backgroundColor: " #EAEBD0", fontWeight: "bold" }}>
+      <h3 style={{ backgroundColor: " #EAEBD0", fontWeight: "bold" }}> Health Log</h3>
+      {records.length === 0 ? (
+        <p style={{ color: "brown" }}>No records yet.</p>
+      ) : (
+        records.map((r) => (
+          <div key={r.id || r._id} style={{ border: '2px solid #EAEBD0', backgroundColor: "brown", marginBottom: '10px', paddingBottom: '8px' }}>
+            <p style={{ color: " #EAEBD0", paddingLeft: "50px" }}><strong>{r.date}</strong></p>
+            <p style={{ color: " #EAEBD0", paddingLeft: "50px" }}> BP: {r.systolic}/{r.diastolic} mmHg</p>
+            <p style={{ color: " #EAEBD0", paddingLeft: "50px" }}> Weight: {r.weight} kg</p>
+            <p style={{ color: " #EAEBD0", paddingLeft: "50px" }}> Glucose: {r.glucose} mg/dL</p>
+          </div>
+        ))
+      )}
     </div>
   );
 };
 
-export default HealthStatus;
+export default HealthLog;
