@@ -1,56 +1,83 @@
-import React from "react";
-import axios from "axios";
+import React from 'react'
+import { useState } from 'react'
+import Footer from '../Frontend/Footer';
+import Card from 'react-bootstrap/Card';
+import mindfulness from '../../Assets/mindfulness.png';
+import './Sosbutton.css'
+const Sosbutton = () => {
+    const [sent, setSent] = useState(false);
 
-const SOSButton = () => {
-  const handleSOSClick = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          try {
-            await axios.post(
-              "http://localhost:5000/api/location", 
-              { lat, lng },
-              {
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-              }
-            );
-            alert("Location sent successfully!");
-          } catch (error) {
-            console.error(error);
-            alert("Error sending location");
-          }
-        },
-        (error) => {
-          console.error(error);
-          alert(" Unable to get your location. Please allow location access.");
-        }
-      );
-    } else {
-      alert(" Geolocation is not supported by this browser.");
-    }
+  const handleSOS = () => {
+    setSent(true);
+    console.log(" SOS triggered Button (send to API )");
+   
   };
-
   return (
-    <button
-      onClick={handleSOSClick}
-      style={{
-        backgroundColor: "brown",
-        color: "white",
-        padding: "10px 20px",
-        border: "none",
-        borderRadius: "8px",
-        fontSize: "16px",
-        cursor: "pointer"
-      }}
-    >
-       SOS
-    </button>
-  );
-};
+    <>
+       <div style={{ textAlign: 'center', padding: '30px',marginTop:"30pxk" }}>
+      <h2 style={{color:"#AF3E3E" ,fontWeight:"bold" }} >Emergency SOS</h2>
+      {sent ? (
+        <p style={{ color: 'red' }}> Emergency Alert Sent to Family.</p>
+      ) : (
+        <button
+          onClick={handleSOS}
+          style={{
+            padding: '20px 40px',
+            backgroundColor: '#EAEBD0',
+            color: '#AF3E3E',
+            fontSize: '24px',
+            borderRadius: '50px',
+            border: 'none'
+          }}
+        >
+          PRESS SOS
+        </button>
+      )}
+    </div>
 
-export default SOSButton;
+      <h2 className="sos" >SOS CARD</h2>
+     <div className="advantage" style={{marginTop:"60px"}}>
+      
+         <Card className="animated-card" style={{ width: '16rem',height:'20rem' ,backgroundColor:" #EAEBD0",border:"none",boxShadow:"0 0 10px rgba(0, 123, 255, 0.5)"  }}>
+      <Card.Img  variant='top' src={mindfulness} style={{width:"60px",marginLeft:"80px",paddingTop:"40px"}}
+      />
+      <Card.Body>
+        
+        <Card.Text  style={{fontSize:"15px" ,paddingLeft:"18px" ,color:"brown"}}>
+      HealSync provides an SOS feature that allows patients to immediately notify their family or caregivers in case of an emergency. By simply pressing the SOS button within the app, an alert is sent in real-time. 
+        </Card.Text>
+       
+      </Card.Body>
+    </Card>
+   
+         <Card className="animated-card" style={{ width: '16rem',height:'20rem' ,backgroundColor:" #EAEBD0",border:"none",boxShadow:"0 0 10px rgba(0, 123, 255, 0.5)"  }}>
+      <Card.Img  variant='top' src={mindfulness} style={{width:"60px",marginLeft:"80px",paddingTop:"40px"}}
+      />
+      <Card.Body>
+        
+        <Card.Text  style={{fontSize:"15px" ,paddingLeft:"18px" ,color:"brown"}}>
+     Ensuring that help reaches the patient as quickly as possible. This feature gives both patients and families peace of mind, knowing that urgent care can be accessed instantly when needed.
+        </Card.Text>
+       
+      </Card.Body>
+    </Card>
+  
+         <Card className="animated-card" style={{ width: '16rem',height:'20rem' ,backgroundColor:" #EAEBD0",border:"none",boxShadow:"0 0 10px rgba(0, 123, 255, 0.5)"  }}>
+      <Card.Img  variant='top' src={mindfulness} style={{width:"60px",marginLeft:"80px",paddingTop:"40px"}}
+      />
+      <Card.Body>
+        
+        <Card.Text  style={{fontSize:"15px" ,paddingLeft:"18px" ,color:"brown"}}>
+       With HealSync, patients can send an emergency alert to their family or caregivers instantly. This ensures immediate attention and support during critical situations, keeping everyone connected and safe. 
+        </Card.Text>
+       
+      </Card.Body>
+    </Card>
+     </div>
+    <Footer/>
+    </>
+  )
+}
+
+export default Sosbutton
 
