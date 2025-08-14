@@ -23,6 +23,9 @@ import Homecare from './Components/Pages/Homecare';
 import Logging from './Components/Pages/Logging';
 import Resource from './Components/Pages/Resource';
 import NotificationAlert from './Components/Pages/NotificationAlert';
+import LinkPatientpage from './Components/Pages/LinkPatientPage';
+import LoggingPatient from './Components/Pages/loggingPatient';
+
 
 const router = createBrowserRouter([
   {
@@ -52,6 +55,14 @@ const router = createBrowserRouter([
     path:"/heal",
     element:<Heal/>,
   },
+  {
+  path:"/loggingpatient",
+  element:<LoggingPatient/>,
+},
+  {
+  path:"/link",
+  element:<LinkPatientpage/>
+},
   {
     path:"/logging",
     element:<Logging/>
