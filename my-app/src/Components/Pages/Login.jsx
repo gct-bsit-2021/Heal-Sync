@@ -28,7 +28,7 @@ const Login = () => {
       <Card.Body>
         <Card.Title className='f' > Patient</Card.Title>
  
-         <Button  href="/logging" className='bw' variant="danger" >Log In</Button>
+         <Button   href="/loggingpatient" className='bw' variant="danger" >Log In</Button>
             
       </Card.Body>
     </Card>
