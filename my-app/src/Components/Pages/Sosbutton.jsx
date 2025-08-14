@@ -1,37 +1,56 @@
-import React from 'react'
-import { useState } from 'react'
-const Sosbutton = () => {
-    const [sent, setSent] = useState(false);
+import React from "react";
+import axios from "axios";
 
-  const handleSOS = () => {
-    setSent(true);
-    console.log(" SOS triggered Button (send to API )");
-   
+const SOSButton = () => {
+  const handleSOSClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          try {
+            await axios.post(
+              "http://localhost:5000/api/location", 
+              { lat, lng },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+              }
+            );
+            alert("Location sent successfully!");
+          } catch (error) {
+            console.error(error);
+            alert("Error sending location");
+          }
+        },
+        (error) => {
+          console.error(error);
+          alert(" Unable to get your location. Please allow location access.");
+        }
+      );
+    } else {
+      alert(" Geolocation is not supported by this browser.");
+    }
   };
-  return (
-    <>
-       <div style={{ textAlign: 'center', padding: '30px' }}>
-      <h2>Emergency SOS</h2>
-      {sent ? (
-        <p style={{ color: 'red' }}> Emergency Alert Sent to Family.</p>
-      ) : (
-        <button
-          onClick={handleSOS}
-          style={{
-            padding: '20px 40px',
-            backgroundColor: 'red',
-            color: 'white',
-            fontSize: '24px',
-            borderRadius: '50px',
-            border: 'none'
-          }}
-        >
-          PRESS SOS
-        </button>
-      )}
-    </div>
-    </>
-  )
-}
 
-export default Sosbutton
+  return (
+    <button
+      onClick={handleSOSClick}
+      style={{
+        backgroundColor: "brown",
+        color: "white",
+        padding: "10px 20px",
+        border: "none",
+        borderRadius: "8px",
+        fontSize: "16px",
+        cursor: "pointer"
+      }}
+    >
+       SOS
+    </button>
+  );
+};
+
+export default SOSButton;
+
