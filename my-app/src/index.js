@@ -8,7 +8,6 @@ import { Auth0Provider  } from '@auth0/auth0-react';
 import AppProvider from '@auth0/auth0-react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import 'leaflet/dist/leaflet.css';
 
 const root =ReactDOM.createRoot(document.getElementById('root'));
 
