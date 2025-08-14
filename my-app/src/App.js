@@ -24,7 +24,7 @@ import Logging from './Components/Pages/Logging';
 import Resource from './Components/Pages/Resource';
 import NotificationAlert from './Components/Pages/NotificationAlert';
 import LinkPatientpage from './Components/Pages/LinkPatientPage';
-import LoggingPatient from './Components/Pages/loggingPatient';
+import LoggingPatient from './Components/Pages/LoggingPatient';
 
 
 const router = createBrowserRouter([
