@@ -1,5 +1,5 @@
 import React from 'react';
-import LocationPage from './Locations/Locationpage';
+import LiveLocationMap from './Locations/LiveLocationMap.jsx';
 import { NavLink } from 'react-router-dom';
 import Footer from '../Frontend/Footer.jsx';
 
@@ -16,7 +16,8 @@ const Location = () => {
         </NavLink>
       </div>
 
-      <LocationPage />
+          
+<LiveLocationMap/>
 
       <Footer />
     </>
