@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Signup from './Components/Pages/Signup';  
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+// Pages
+import Signup from './Components/Pages/Signup';  
 import Home from './Components/Pages/Home';
 import Login from './Components/Pages/Login';
 import Navbar from './Components/Frontend/Navbar';
@@ -21,154 +24,43 @@ import Work from './Components/Pages/Work';
 import Heal from './Components/Pages/Heal';
 import Homecare from './Components/Pages/Homecare';
 import Logging from './Components/Pages/Logging';
-//import Resource from './Components/Pages/Resource';
 import NotificationAlert from './Components/Pages/NotificationAlert';
 import LinkPatientpage from './Components/Pages/LinkPatientPage';
 import LoggingPatient from './Components/Pages/LoggingPatient';
-// import ResourceCenter from './Components/Pages/Resource/ResourceCenter';
-// import ResourceCard from './Components/Pages/Resource/ResourceCard';
 
+// Context
+import { NotificationsProvider } from './Components/Pages/Notification/NotificationContext';
 
 const router = createBrowserRouter([
-  {
-    path:"/",
-    element:
-    <div>
-      <Navbar/>
-      <Home/>
-    </div>,
-  },
-  
-  {
-    path:"/login",
-    element:<div>
-      <Navbar/>
-      <Login/>
-    </div>,
-  },
-  {
-    path:"/footer",
-    element:<div>
-      <Navbar/>
-      <Footer/>
-    </div>,
-  },
-  {
-    path:"/heal",
-    element:<Heal/>,
-  },
-{
-  path:"/loggingpatient",
-  element: (
-    <div>
-      <Navbar />
-      <LoggingPatient />
-    </div>
-  ),
-},
-
-  {
-  path:"/link",
-  element:<div>
-    <Navbar/>
-  <LinkPatientpage/>
-  </div>,
-},
-  {
-    path:"/logging",
-    element:<Logging/>
-  },
-  {
-    path:"/notification",
-    element:<NotificationAlert/>,
-  },
-  // {
-  //   path:"/resourcecenter",
-  //   element:<Resource/>
-  // },
-  {
-    path:"/homecare",
-    element:<Homecare/>,
-  },
-  {
-    path:"/sos",
-    element:<div>
-      <Navbar/>
-      <Sosbutton/>
-    </div>,
-  },
-  {
-    path:"/button",
-    element:<div>
-      <Navbar/>
-      <Button/>
-    </div>,
-  },
-  {
-    path:"/dashbord",
-    element: <Dashboard/>,
-  },
-  {
-    path:"/task",
-    element:<div>
-      <Task/>
-    </div>,
-    children:[
-      {
-        path:"taasklist",
-        element:<TaaskList/>,
-      },
-    ]
-  },
-  {
-    path:"/progress",
-    element:<div>
-      <Progress/>
-    </div>,
-    children:[
-      {
-        path:"tasklist",
-        element:<TaskList/>,
-      },
-    ]
-  },
-  {
-    path:"/mood",
-    element: <Mood/>,
-  },
-  {
-    path:"/location",
-    element:<Location/>
-  },
-  {
-    path:"/healthmontorning",
-    element:<Healthmontorning/>
-  },
-  {
-    path:"/calender",
-    element:<Appointment/>
-  },
-  {
-    path:"/work",
-    element:<Work/>
-  },
-  {
-    path: "/Sign",
-    element: (
-      <div>
-        <Navbar />
-        <Signup />
-      </div>
-    ),
-  },
-])
+  { path: "/", element: <><Navbar/><Home/></> },
+  { path: "/login", element: <><Navbar/><Login/></> },
+  { path: "/footer", element: <><Navbar/><Footer/></> },
+  { path: "/heal", element: <Heal/> },
+  { path: "/loggingpatient", element: <><Navbar/><LoggingPatient/></> },
+  { path: "/link", element: <><Navbar/><LinkPatientpage/></> },
+  { path: "/logging", element: <Logging/> },
+  { path: "/notification", element: <NotificationAlert/> },
+  { path: "/homecare", element: <Homecare/> },
+  { path: "/sos", element: <><Navbar/><Sosbutton/></> },
+  { path: "/button", element: <><Navbar/><Button/></> },
+  { path: "/dashbord", element: <Dashboard/> },
+  { path: "/task", element: <Task/>, children: [{ path: "taasklist", element: <TaaskList/> }] },
+  { path: "/progress", element: <Progress/>, children: [{ path: "tasklist", element: <TaskList/> }] },
+  { path: "/mood", element: <Mood/> },
+  { path: "/location", element: <Location/> },
+  { path: "/healthmontorning", element: <Healthmontorning/> },
+  { path: "/calender", element: <Appointment/> },
+  { path: "/work", element: <Work/> },
+  { path: "/Sign", element: <><Navbar/><Signup/></> },
+]);
 
 const App = () => {
   return (
-    <div>
+    <NotificationsProvider>
       <RouterProvider router={router}/> 
-    </div>
-  )
+      <ToastContainer /> {/* Required for toasts */}
+    </NotificationsProvider>
+  );
 }
 
-export default App
+export default App;

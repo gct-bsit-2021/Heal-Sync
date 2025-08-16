@@ -1,37 +1,49 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { io } from "socket.io-client";
 
 const NotificationsContext = createContext();
 
 export const NotificationsProvider = ({ children }) => {
-  const showToast = (title, opts = {}) => {
-    toast(`${title}`, { position: "top-right", autoClose: 4000, ...opts });
-  };
+  const [notifications, setNotifications] = useState([]);
 
-  const showBrowserNotification = (title, options = {}) => {
-    if (!("Notification" in window)) return false;
-    if (Notification.permission === "granted") {
-      new Notification(title, options);
-      return true;
-    }
-    // ask permission then show if granted
-    if (Notification.permission !== "denied") {
-      Notification.requestPermission().then(permission => {
-        if (permission === "granted") new Notification(title, options);
-      });
-    }
-    return false;
-  };
+  useEffect(() => {
+    const token = localStorage.getItem("token"); // Make sure user is logged in
+    if (!token) return;
 
-  const notify = ({ title, body }) => {
-    // preference: show browser notification if permitted; always show in-app toast
-    showToast(title);
-    showBrowserNotification(title, { body });
-  };
+    // 1️⃣ Fetch existing notifications safely
+    fetch("http://localhost:5000/api/notifications/calendar", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setNotifications(data);
+
+          data.forEach(n => {
+            if (n?.message) {
+              toast(n.message, { position: "top-right", autoClose: 20000 });
+            }
+          });
+        }
+      })
+      .catch(err => console.error("Fetch error:", err));
+
+    // 2️⃣ Setup socket connection for real-time notifications
+    const socket = io("http://localhost:5000", { auth: { token } });
+
+    socket.on("notification", data => {
+      if (data?.message) {
+        setNotifications(prev => [data, ...prev]);
+        toast(data.message, { position: "top-right", autoClose: 20000 });
+      }
+    });
+
+    return () => socket.disconnect();
+  }, []);
 
   return (
-    <NotificationsContext.Provider value={{ notify }}>
+    <NotificationsContext.Provider value={{ notifications, setNotifications }}>
       {children}
     </NotificationsContext.Provider>
   );

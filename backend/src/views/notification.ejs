@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>HealSync Notifications</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; }
+    .toast {
+      position: fixed; right: 16px; top: 16px; padding: 12px 16px;
+      border-radius: 10px; box-shadow: 0 10px 24px rgba(0,0,0,.15);
+      background: #fff; border: 1px solid #eee;
+    }
+    .list { margin-top: 16px; }
+    .item { padding: 10px 12px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Notifications</h2>
+  <div class="list" id="list"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const userId = "<%= userId %>"; // passed from server
+    const socket = io();
+
+    // Join a room that's the user's ID
+    socket.emit("register", { userId });
+
+    // render function
+    function addItem(msg) {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.textContent = msg;
+      document.getElementById("list").prepend(div);
+    }
+
+    // simple toast
+    function toast(msg) {
+      const t = document.createElement("div");
+      t.className = "toast";
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+
+    socket.on("notification", (n) => {
+      toast(n.message);
+      addItem(n.message);
+    });
+  </script>
+</body>
+</html>
