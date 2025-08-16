@@ -1,42 +1,41 @@
 import Location from "../models/Location.js";
+import { getLinkedUserId } from "../utils/linkedid.js";
 
-// Save or update the user's current location
-export const saveLocation = async (req, res) => {
+// Patient updates live location
+export const updateLocation = async (req, res) => {
   try {
-    let { lat, lng, patientId } = req.body;
-
-    // If using authentication, get from token instead
-    const userId = patientId || req.userId;
-
-    if (!lat || !lng || !userId) {
-      return res.status(400).json({ message: "Latitude, longitude and patient ID are required." });
-    }
+    const { latitude, longitude } = req.body;
+    const userId = req.user._id;
 
     const location = await Location.findOneAndUpdate(
-      { patient: userId },
-      { latitude: lat, longitude: lng, updatedAt: Date.now() },
-      { new: true, upsert: true }
+      { userId },
+      { latitude, longitude, updatedAt: new Date() },
+      { upsert: true, new: true }
     );
 
-    res.status(200).json({ message: 'Location saved', data: location });
-  } catch (err) {
-    res.status(500).json({ message: 'Error saving location', error: err.message });
+    res.status(200).json({ message: "Location updated", location });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-// Get the latest location of a specific user
+// Family gets patient's location
 export const getLocation = async (req, res) => {
-  const { patientId } = req.params;
-
   try {
-    const location = await Location.findOne({ patient: patientId });
+    const linkedUserId = await getLinkedUserId(req.user._id, req.user.role);
+
+    if (!linkedUserId) {
+      return res.status(404).json({ message: "No linked patient found" });
+    }
+
+    const location = await Location.findOne({ userId: linkedUserId });
 
     if (!location) {
-      return res.status(404).json({ message: "Location not found." });
+      return res.status(404).json({ message: "Location not found" });
     }
 
     res.status(200).json(location);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching location", error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };

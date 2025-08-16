@@ -1,78 +1,58 @@
-// import Link from "../models/Link.js";
+import Link from "../models/Link.js";
+import Patient from "../models/Patient.js";
+import Family from "../models/Family.js";
+import bcrypt from "bcryptjs";
 
-// // Create a new link (patient links a family email)
-// export const createLink = async (req, res) => {
-//   try {
-//     const patientEmail = req.user.email; // from auth middleware token
-//     const { familyEmail } = req.body;
+// POST /api/link-patient
+export const linkPatient = async (req, res) => {
+  try {
+    const { patientEmail, patientPassword } = req.body;
 
-//     if (!familyEmail) {
-//       return res.status(400).json({ message: "familyEmail is required" });
-//     }
+    if (!patientEmail || !patientPassword) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
 
-//     // Check if link already exists
-//     const existingLink = await Link.findOne({ patientEmail, familyEmail });
-//     if (existingLink) {
-//       return res.status(400).json({ message: "Link already exists" });
-//     }
+    // Find the logged-in family account
+    const family = await Family.findById(req.user.id);
+    if (!family) {
+      return res.status(404).json({ message: "Family account not found" });
+    }
 
-//     // Create new link
-//     const newLink = new Link({ patientEmail, familyEmail });
-//     await newLink.save();
+    // Find patient by email
+    const patient = await Patient.findOne({ email: patientEmail });
+    if (!patient) {
+      return res.status(404).json({ message: "Patient not found" });
+    }
 
-//     res.status(201).json({ message: "Link created successfully", link: newLink });
-//   } catch (error) {
-//     console.error("Create Link Error:", error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
+    // Verify patient password
+    const isMatch = await bcrypt.compare(patientPassword, patient.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid password" });
+    }
 
-// // Get all family emails linked to a patient
-// export const getFamilyLinksByPatient = async (req, res) => {
-//   try {
-//     const { email } = req.params;
+    // Check if already linked
+    const existingLink = await Link.findOne({
+      familyId: family._id,
+      patientId: patient._id
+    });
 
-//     const links = await Link.find({ patientEmail: email }).select("familyEmail -_id");
+    if (existingLink) {
+      return res.status(400).json({ message: "Already linked to this patient" });
+    }
 
-//     res.json({ familyEmails: links.map(link => link.familyEmail) });
-//   } catch (error) {
-//     console.error("Get Family Links Error:", error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
+    // Create link
+    const link = await Link.create({
+      familyId: family._id,
+      patientId: patient._id
+    });
 
-// // Get all patient emails linked to a family member
-// export const getPatientLinksByFamily = async (req, res) => {
-//   try {
-//     const { email } = req.params;
+    res.status(201).json({
+      message: "Patient linked successfully",
+      link
+    });
 
-//     const links = await Link.find({ familyEmail: email }).select("patientEmail -_id");
-
-//     res.json({ patientEmails: links.map(link => link.patientEmail) });
-//   } catch (error) {
-//     console.error("Get Patient Links Error:", error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
-
-// // Delete a link (either patient or family can call this)
-// export const deleteLink = async (req, res) => {
-//   try {
-//     const { patientEmail, familyEmail } = req.body;
-
-//     if (!patientEmail || !familyEmail) {
-//       return res.status(400).json({ message: "patientEmail and familyEmail are required" });
-//     }
-
-//     const deleted = await Link.findOneAndDelete({ patientEmail, familyEmail });
-
-//     if (!deleted) {
-//       return res.status(404).json({ message: "Link not found" });
-//     }
-
-//     res.json({ message: "Link deleted successfully" });
-//   } catch (error) {
-//     console.error("Delete Link Error:", error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
+  } catch (error) {
+    console.error("Link creation error:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};

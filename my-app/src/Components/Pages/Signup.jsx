@@ -7,17 +7,17 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    role: "patient", // default role
   });
 
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);  // Loading spinner or button text
-  const [serverError, setServerError] = useState("");  // Show backend errors
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Validate inputs locally before sending to backend
   const validate = () => {
     let newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
@@ -35,20 +35,22 @@ const Signup = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Send data to backend on submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setServerError("");  // reset server error
+    setServerError("");
 
     if (validate()) {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:5000/api/patients/signup", {
+        // Decide endpoint based on role
+        const endpoint =
+          formData.role === "patient"
+            ? "http://localhost:5000/api/patients/signup"
+            : "http://localhost:5000/api/family/signup";
+
+        const response = await fetch(endpoint, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // Important: backend expects fullName, email, password
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             fullName: formData.name,
             email: formData.email,
@@ -61,13 +63,16 @@ const Signup = () => {
         if (response.ok) {
           alert("Signup Successful!");
           console.log("User Data:", data);
-          // Clear form on success
-          setFormData({ name: "", email: "", password: "", confirmPassword: "" });
-
-          // TODO: Redirect user after signup if you want
-          // e.g., window.location.href = "/login";
+          setFormData({
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            role: "patient",
+          });
+          // Navigate if needed
+          // window.location.href = "/login";
         } else {
-          // Show error message from backend (e.g., email already taken)
           setServerError(data.message || "Signup failed");
         }
       } catch (error) {
@@ -120,7 +125,12 @@ const Signup = () => {
         />
         {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
 
-        {/* Show backend error message if any */}
+        {/* Role selector */}
+        <select name="role" value={formData.role} onChange={handleChange}>
+          <option value="patient">Patient</option>
+          <option value="family">Family</option>
+        </select>
+
         {serverError && <p className="error">{serverError}</p>}
 
         <button type="submit" disabled={loading}>

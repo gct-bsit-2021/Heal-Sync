@@ -1,18 +1,11 @@
-// import express from "express";
-// import { createLink, getFamilyLinksByPatient, getPatientLinksByFamily, deleteLink } from "../controller/link_controller.js";
-// import { protect } from '../middleware/auth.js';
-// const router = express.Router();
+import express from "express";
+import { protect } from "../middleware/auth.js";
+import { linkPatient } from "../controller/link_controller.js";
+//import { addHealthEntry, getHealthEntries } from "../controller/health_controller.js";
 
-// // Patient must be logged in to create link
-// router.post("/", protect, createLink);
+const router = express.Router();
 
-// // Get all family emails linked to a patient (no auth needed, you can change if you want)
-// router.get("/patient/:email", getFamilyLinksByPatient);
+// POST request to link patient to family
+router.post("/link-patient", protect, linkPatient);
 
-// // Get all patient emails linked to a family (no auth needed, you can change if you want)
-// router.get("/family/:email", getPatientLinksByFamily);
-
-// // Delete a link (protected route? You can add auth if you want)
-// router.delete("/", deleteLink);
-
-// export default router;
+export default router;

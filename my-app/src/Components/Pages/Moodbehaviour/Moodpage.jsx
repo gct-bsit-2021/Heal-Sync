@@ -6,28 +6,30 @@ import axios from 'axios';
 
 const Moodpage = () => {
   const [moodEntries, setMoodEntries] = useState([]);
-  const patientEmail = "test@example.com"; // replace with logged-in user's email
-
-  // Fetch from DB on load
-  useEffect(() => {
-    fetchMoods();
-  }, []);
 
   const fetchMoods = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/moodlogs/${patientEmail}`);
-      // Convert backend data to match frontend format
+      const token = localStorage.getItem("token");
+      const res = await axios.get("http://localhost:5000/api/moodlogs", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
       const formatted = res.data.map(e => ({
         id: e._id,
         mood: e.mood,
         note: e.notes,
         date: new Date(e.createdAt).toLocaleString()
       }));
+
       setMoodEntries(formatted);
     } catch (err) {
-      console.error("❌ Error fetching moods:", err);
+      console.error("Error fetching moods:", err.response?.data || err.message);
     }
   };
+
+  useEffect(() => {
+    fetchMoods();
+  }, []);
 
   const addMoodEntry = (entry) => {
     setMoodEntries([entry, ...moodEntries]);

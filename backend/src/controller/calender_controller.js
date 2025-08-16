@@ -1,56 +1,96 @@
+import mongoose from "mongoose";
 import Calender from "../models/Calender.js";
+import { getLinkedUserId } from "../utils/linkedid.js";
 
-// @desc    Add a new appointment
-// @route   POST /api/calender
-// @access  Private
+// Add a new appointment
 export const addAppointment = async (req, res) => {
   try {
-    const { title, patientName, date, time } = req.body;
+    const { title, location, date, time, createdBy } = req.body; // 👈 role removed, createdBy string comes from frontend
 
-    if (!title || !patientName || !date || !time) {
+    if (!title || !location || !date || !time || !createdBy) {
       return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // belongsTo → creator (from token) + linked user
+    const belongsTo = [req.user._id];
+    const linkedUser = await getLinkedUserId(req.user._id);
+    if (linkedUser) {
+      belongsTo.push(linkedUser._id ? linkedUser._id : linkedUser);
     }
 
     const appointment = await Calender.create({
       title,
-      patientName,
+      location,
       date,
       time,
-      createdBy: req.user._id
+      createdBy,   // 👈 now stores "family" | "patient"
+      belongsTo,   // assign array
     });
 
-    res.status(201).json(appointment);
+    return res
+      .status(201)
+      .json({ message: "Appointment created successfully", appointment });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
   }
 };
 
-// @desc    Get all appointments
-// @route   GET /api/calender
-// @access  Private
+// Get all appointments (no filter)
 export const getAppointments = async (req, res) => {
   try {
-    const appointments = await Calender.find().sort({ date: 1, time: 1 });
-    res.status(200).json(appointments);
+    const appointments = await Calender.find().sort({ createdAt: -1 });
+
+    return res.status(200).json(appointments);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("getAppointments error:", error);
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
   }
 };
 
-// @desc    Delete an appointment
-// @route   DELETE /api/calender/:id
-// @access  Private
+
+// Mark appointment as complete
+export const completeAppointment = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const appointment = await Calender.findByIdAndUpdate(
+      id,
+      { completed: true },
+      { new: true }
+    );
+
+    if (!appointment)
+      return res.status(404).json({ message: "Appointment not found" });
+
+    return res
+      .status(200)
+      .json({ message: "Appointment marked completed", appointment });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
+  }
+};
+
+// Delete appointment
 export const deleteAppointment = async (req, res) => {
   try {
-    const appointment = await Calender.findById(req.params.id);
+    const { id } = req.params;
 
-    if (!appointment) {
+    const appointment = await Calender.findByIdAndDelete(id);
+    if (!appointment)
       return res.status(404).json({ message: "Appointment not found" });
-    }
 
-    await appointment.deleteOne();
-    res.status(200).json({ message: "Appointment deleted" });
+    return res
+      .status(200)
+      .json({ message: "Appointment deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
   }
 };

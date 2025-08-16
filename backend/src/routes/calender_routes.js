@@ -1,13 +1,13 @@
 import express from 'express';
-import { saveLocation, getLocation } from '../controller/location_controller.js';
-// import { protect } from '../middleware/auth.js';
+import { completeAppointment , addAppointment, getAppointments, deleteAppointment } from '../controller/calender_controller.js';
+import { protect } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// For testing, removing protect middleware
-router.post('/', saveLocation);
-
-// Get latest location by patientId
-router.get('/:patientId', getLocation);
+// For now without protect middleware
+router.post('/', protect, addAppointment);
+router.get('/', protect, getAppointments);
+router.delete('/:id', protect, deleteAppointment);
+router.patch('/complete/:id', protect, completeAppointment);
 
 export default router;

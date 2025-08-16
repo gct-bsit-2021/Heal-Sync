@@ -1,0 +1,20 @@
+.sos{
+    color: #AF3E3E;
+    margin-left: 440px;
+    margin-top: 30px;
+    margin-right: 400px;
+}
+.sos:hover{
+    color: #EAEBD0;
+    
+}
+.animated-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.animated-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}

@@ -9,4 +9,4 @@ const Log = () => {
   )
 }
 
-export default Log
+export default Log ;

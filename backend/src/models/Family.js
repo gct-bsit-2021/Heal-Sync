@@ -17,6 +17,6 @@ const familySchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-const Family = mongoose.model("Family", familySchema);
+const Family = mongoose.model("Families", familySchema);
 
 export default Family;

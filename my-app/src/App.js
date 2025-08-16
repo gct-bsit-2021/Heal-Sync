@@ -21,10 +21,12 @@ import Work from './Components/Pages/Work';
 import Heal from './Components/Pages/Heal';
 import Homecare from './Components/Pages/Homecare';
 import Logging from './Components/Pages/Logging';
-import Resource from './Components/Pages/Resource';
+//import Resource from './Components/Pages/Resource';
 import NotificationAlert from './Components/Pages/NotificationAlert';
 import LinkPatientpage from './Components/Pages/LinkPatientPage';
 import LoggingPatient from './Components/Pages/LoggingPatient';
+// import ResourceCenter from './Components/Pages/Resource/ResourceCenter';
+// import ResourceCard from './Components/Pages/Resource/ResourceCard';
 
 
 const router = createBrowserRouter([
@@ -55,15 +57,21 @@ const router = createBrowserRouter([
     path:"/heal",
     element:<Heal/>,
   },
-  {
+{
   path:"/loggingpatient",
-  element:<LoggingPatient/>,
+  element: (
+    <div>
+      <Navbar />
+      <LoggingPatient />
+    </div>
+  ),
 },
+
   {
   path:"/link",
   element:<div>
     <Navbar/>
-  <LoggingPatient/>
+  <LinkPatientpage/>
   </div>,
 },
   {
@@ -74,10 +82,10 @@ const router = createBrowserRouter([
     path:"/notification",
     element:<NotificationAlert/>,
   },
-  {
-    path:"/resourcecenter",
-    element:<Resource/>
-  },
+  // {
+  //   path:"/resourcecenter",
+  //   element:<Resource/>
+  // },
   {
     path:"/homecare",
     element:<Homecare/>,

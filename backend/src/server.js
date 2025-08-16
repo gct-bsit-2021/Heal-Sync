@@ -15,7 +15,7 @@ import healthLogRoutes from './routes/healthlog_routes.js';
 import patientRoutes from './routes/patient_routes.js';
 import authRoutes from './routes/auth_routes.js';
 import familyRoutes from './routes/family_routes.js';
-// import linkRoutes from './routes/link_routes.js';
+ import linkRoutes from './routes/link_routes.js';
 import taskRoutes from "./routes/task_routes.js";
 import progressRoutes from "./routes/progress_routes.js";
 import calenderRoutes from "./routes/calender_routes.js";
@@ -38,9 +38,9 @@ app.use('/api/patients', patientRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/family', familyRoutes);
 app.use("/api/tasks", taskRoutes);
-// app.use('/api/link', linkRoutes);
+ app.use('/api/link', linkRoutes);
 app.use("/api/progress", progressRoutes);
-app.use("/api/calender", calenderRoutes);
+app.use("/api/calenders", calenderRoutes);
 app.use("/api/location", locationRoutes);
 
 // Test route

@@ -1,10 +1,10 @@
-// routes/location_routes.js
-import express from 'express';
-import { saveLocation } from '../controller/location_controller.js';
-import { protect } from '../middleware/auth.js';
+import express from "express";
+import { protect } from "../middleware/auth.js";
+import { updateLocation, getLocation } from "../controller/location_controller.js";
 
 const router = express.Router();
 
-router.post('/', protect, saveLocation);
+router.post("/update", protect, updateLocation); // patient sends location
+router.get("/get", protect, getLocation); // family gets location
 
 export default router;

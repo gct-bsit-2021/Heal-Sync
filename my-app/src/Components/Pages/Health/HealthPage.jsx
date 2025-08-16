@@ -1,23 +1,19 @@
+// src/Health/HealthPage.jsx
 import React, { useState, useEffect } from 'react';
 import HealthForm from '../Health/Healthform';
 import HealthStatus from './HealthStatus';
-import HealthLog from '../Health/HealthLog';
+import HealthLog from './HealthLog';
 
 const HealthPage = () => {
   const [records, setRecords] = useState([]);
   const token = localStorage.getItem('token');
-  const email = localStorage.getItem('email'); // must be saved at login
+  const role = localStorage.getItem('role'); // patient or family
 
-  // DEBUG: show token/email so you can confirm
+  // Fetch health logs
   useEffect(() => {
-    console.log("HealthPage token:", token);
-    console.log("HealthPage email:", email);
-  }, [token, email]);
+    if (!token) return;
 
-  useEffect(() => {
-    if (!token || !email) return;
-
-    fetch(`http://localhost:5000/api/healthlogs/${email}`, {
+    fetch(`http://localhost:5000/api/healthlogs/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -27,30 +23,29 @@ const HealthPage = () => {
         return res.json();
       })
       .then(data => {
-        // format backend entries to what UI expects
         const formatted = data.map(e => ({
           id: e._id,
           systolic: e.systolic,
           diastolic: e.diastolic,
           weight: e.weight,
           glucose: e.glucose,
-          date: new Date(e.createdAt || e.createdAt).toLocaleString()
+          date: new Date(e.createdAt).toLocaleString()
         }));
         setRecords(formatted);
       })
       .catch(err => {
         console.error("Fetch health logs error:", err);
       });
-  }, [token, email]);
+  }, [token]);
 
+  // Add new record
   const addRecord = (data) => {
-    if (!token || !email) {
+    if (!token) {
       alert("Please login to add a record");
       return;
     }
 
     const payload = {
-      patientEmail: email, // still send this, backend should prefer req.user.email if available
       systolic: Number(data.systolic),
       diastolic: Number(data.diastolic),
       weight: Number(data.weight),
@@ -73,7 +68,6 @@ const HealthPage = () => {
         return res.json();
       })
       .then(newEntry => {
-        // server returns { data: newEntryDocument }
         const e = newEntry.data;
         const formatted = {
           id: e._id,
@@ -87,7 +81,7 @@ const HealthPage = () => {
       })
       .catch(err => {
         console.error("Error adding record:", err.message || err);
-        alert("Error adding record: " + (err.message || "Unknown error - check console"));
+        alert("Error adding record: " + (err.message || "Unknown error"));
       });
   };
 
@@ -102,7 +96,9 @@ const HealthPage = () => {
       }}>
         Health Monitor
       </h2>
-      <HealthForm onAdd={addRecord} />
+
+      {role === "patient" && <HealthForm onAdd={addRecord} />}
+
       <HealthStatus records={records} />
       <HealthLog records={records} />
     </div>

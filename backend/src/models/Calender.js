@@ -1,31 +1,19 @@
 import mongoose from "mongoose";
 
-const calenderSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
+const calenderSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    location: { type: String, required: true },
+    date: { type: String, required: true },
+    time: { type: String, required: true },
+     createdBy: { type: String, enum: ["family", "patient"], required: true },
+    completed: { type: Boolean, default: false },
+    
+    // 👇 add this for patient + linked family visibility
+    belongsTo: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
-  patientName: {
-    type: String,
-    required: true,
-  },
-  date: {
-    type: String, // Format: dd/mm/yyyy
-    required: true,
-  },
-  time: {
-    type: String, // Format: hh:mm
-    required: true,
-  },
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // optional: to know who added the appointment
-    required: true,
-  },
-}, {
-  timestamps: true
-});
+  { timestamps: true }
+);
 
 const Calender = mongoose.model("Calender", calenderSchema);
-
 export default Calender;

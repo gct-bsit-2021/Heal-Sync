@@ -1,12 +1,17 @@
-// controllers/progress_controller.js
 import Task from "../models/Task.js";
+import { getLinkedUserId } from "../utils/linkedid.js";
 
 export const getProgressReport = async (req, res) => {
   try {
-    const tasks = await Task.find({ user: req.userId });
+    const linkedUser = await getLinkedUserId(req.user._id); // ✅ use _id
+    let userIds = [req.user._id]; // ✅ use _id
+    if (linkedUser) userIds.push(linkedUser._id); // ✅ use _id
+
+    // Query tasks created by either user or their linked user
+    const tasks = await Task.find({ createdBy: { $in: userIds } });
 
     const totalTasks = tasks.length;
-    const completedTasks = tasks.filter(t => t.status === "completed").length; // <- FIX
+    const completedTasks = tasks.filter(t => t.status === "completed").length;
     const pendingTasks = totalTasks - completedTasks;
 
     const lowPriority = tasks.filter(t => t.priority === "low").length;
