@@ -1,7 +1,8 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "leaflet/dist/leaflet.css";
 
 // Pages
 import Signup from './Components/Pages/Signup';  
@@ -16,7 +17,6 @@ import TaskList from './Components/Pages/Progresss/Tasklist';
 import Progress from './Components/Pages/Progress';
 import TaaskList from './Components/Pages/Plan/TaaskList';
 import Mood from './Components/Pages/Mood';
-import Location from './Components/Pages/Location';
 import Healthmontorning from './Components/Pages/Healthmontorning';
 import Appointment from './Components/Pages/Appointment';
 import Sosbutton from './Components/Pages/Sosbutton';
@@ -27,15 +27,63 @@ import Logging from './Components/Pages/Logging';
 import NotificationAlert from './Components/Pages/NotificationAlert';
 import LinkPatientpage from './Components/Pages/LinkPatientPage';
 import LoggingPatient from './Components/Pages/LoggingPatient';
+import Resource from './Components/Pages/Resource'; 
+
+// ✅ Corrected path for Location
+import Location from './Components/Pages/Locations/Location';  
+
+import ErrorBoundary from "./Components/ErrorBoundary";
+import RouteError from "./Components/RouteError";
 
 // Context
-import { NotificationsProvider } from './Components/Pages/Notification/NotificationContext';
+//import { NotificationsProvider } from './Components/Pages/Notification/NotificationContext';
 
 const router = createBrowserRouter([
   { path: "/", element: <><Navbar/><Home/></> },
   { path: "/login", element: <><Navbar/><Login/></> },
   { path: "/footer", element: <><Navbar/><Footer/></> },
   { path: "/heal", element: <Heal/> },
+  { path:"/resourcecenter", element:<Resource/> },
+
+  {
+    path: "/location",
+    element: (
+      <ErrorBoundary>
+        <div>
+          <Navbar />
+          <Location role="patient" /> {/* can be dynamic later */}
+        </div>
+      </ErrorBoundary>
+    ),
+    errorElement: <RouteError />,
+  },
+
+  // 🚀 Role-based routes
+  {
+    path: "/location-patient",
+    element: (
+      <ErrorBoundary>
+        <div>
+          <Navbar />
+          <Location role="patient" />
+        </div>
+      </ErrorBoundary>
+    ),
+    errorElement: <RouteError />,
+  },
+  {
+    path: "/location-family",
+    element: (
+      <ErrorBoundary>
+        <div>
+          <Navbar />
+          <Location role="family" />
+        </div>
+      </ErrorBoundary>
+    ),
+    errorElement: <RouteError />,
+  },
+
   { path: "/loggingpatient", element: <><Navbar/><LoggingPatient/></> },
   { path: "/link", element: <><Navbar/><LinkPatientpage/></> },
   { path: "/logging", element: <Logging/> },
@@ -47,20 +95,18 @@ const router = createBrowserRouter([
   { path: "/task", element: <Task/>, children: [{ path: "taasklist", element: <TaaskList/> }] },
   { path: "/progress", element: <Progress/>, children: [{ path: "tasklist", element: <TaskList/> }] },
   { path: "/mood", element: <Mood/> },
-  { path: "/location", element: <Location/> },
   { path: "/healthmontorning", element: <Healthmontorning/> },
   { path: "/calender", element: <Appointment/> },
   { path: "/work", element: <Work/> },
-  { path: "/Sign", element: <><Navbar/><Signup/></> },
+  { path: "/sign", element: <><Navbar/><Signup/></> },
 ]);
-
 const App = () => {
   return (
-    <NotificationsProvider>
-      <RouterProvider router={router}/> 
-      <ToastContainer /> {/* Required for toasts */}
-    </NotificationsProvider>
+    <>
+      <RouterProvider router={router} />
+      {/* Toastify container should be here */}
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+    </>
   );
-}
-
+};
 export default App;

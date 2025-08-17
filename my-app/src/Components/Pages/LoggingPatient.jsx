@@ -23,7 +23,7 @@ const LoggingPatient = () => {
       // Store token & user role in localStorage
       localStorage.setItem("token", response.token);
       localStorage.setItem("role", "patient");
-
+      
       alert("✅ Login successful!");
       navigate("/"); // redirect after login
     } catch (error) {

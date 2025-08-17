@@ -1,9 +1,10 @@
 import bcrypt from "bcryptjs";
 import Patient from "../models/Patient.js";
-import generateToken from "../utils/generatetoken.js";
+import generateToken from "../utils/generateToken.js";
 
+// Signup new patient
 export const registerPatient = async (req, res) => {
-  console.log("Received signup request with body:", req.body);  // Log the request body
+  console.log("Received signup request with body:", req.body);
 
   const { fullName, email, password } = req.body;
 
@@ -22,7 +23,7 @@ export const registerPatient = async (req, res) => {
       password: hashedPassword,
     });
 
-    const token = generateToken(patient._id);
+    const token = generateToken(patient._id, "patient");
 
     console.log("Signup success for:", email);
 
@@ -30,14 +31,14 @@ export const registerPatient = async (req, res) => {
       _id: patient._id,
       fullName: patient.fullName,
       email: patient.email,
+      role: "patient",
       token,
     });
   } catch (error) {
-    console.error("RegisterPatient error:", error);  // Log the full error
+    console.error("RegisterPatient error:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
-
 
 // Login existing patient
 export const loginPatient = async (req, res) => {
@@ -54,12 +55,13 @@ export const loginPatient = async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    const token = generateToken(patient._id);
+    const token = generateToken(patient._id, "patient");
 
     res.json({
       _id: patient._id,
       fullName: patient.fullName,
       email: patient.email,
+      role: "patient",
       token,
     });
   } catch (error) {

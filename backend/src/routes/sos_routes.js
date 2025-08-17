@@ -1,10 +1,20 @@
 import express from "express";
-import { triggerSOS, resolveSOS } from "../controllers/sos_controller.js";
 import { protect } from "../middleware/auth.js";
+import {
+  sendSOS
+//  getFamilySosAlerts
+  //acknowledgeSos,
+} from "../controller/sos_controller.js";
 
 const router = express.Router();
 
-router.post("/", protect, triggerSOS); // Only patient can press
-router.patch("/:id/resolve", protect, resolveSOS);
+// 🚨 Patient triggers SOS
+router.post("/send", protect, sendSOS);
+
+// 📋 Family views all SOS alerts
+//router.get("/get", protect, getFamilySosAlerts);
+
+// ✅ Family acknowledges SOS
+//router.patch("/acknowledge/:sosId", protect, acknowledgeSos);
 
 export default router;

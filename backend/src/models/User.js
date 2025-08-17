@@ -13,6 +13,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 6
+  },
+  role: {
+    type: String,
+    enum: ["patient", "family"],
+    required: true
+  },
+  linkedId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    default: null
   }
 }, { timestamps: true });
 

@@ -3,12 +3,14 @@ import { getLinkedUserId } from "../utils/linkedid.js";
 
 export const getProgressReport = async (req, res) => {
   try {
-    const linkedUser = await getLinkedUserId(req.user._id); // ✅ use _id
-    let userIds = [req.user._id]; // ✅ use _id
-    if (linkedUser) userIds.push(linkedUser._id); // ✅ use _id
+    const linkedUser = await getLinkedUserId(req.user._id);
+    let userIds = [req.user._id];
+    if (linkedUser) userIds.push(linkedUser._id);
 
-    // Query tasks created by either user or their linked user
-    const tasks = await Task.find({ createdBy: { $in: userIds } });
+    // ✅ Check tasks where user or linked user is in `belongsTo`
+    const tasks = await Task.find({
+      belongsTo: { $in: userIds }
+    });
 
     const totalTasks = tasks.length;
     const completedTasks = tasks.filter(t => t.status === "completed").length;
@@ -18,9 +20,8 @@ export const getProgressReport = async (req, res) => {
     const mediumPriority = tasks.filter(t => t.priority === "medium").length;
     const highPriority = tasks.filter(t => t.priority === "high").length;
 
-    const progressPercent = totalTasks > 0
-      ? Math.round((completedTasks / totalTasks) * 100)
-      : 0;
+    const progressPercent =
+      totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
     return res.status(200).json({
       totalTasks,
@@ -29,11 +30,13 @@ export const getProgressReport = async (req, res) => {
       priorityBreakdown: {
         low: lowPriority,
         medium: mediumPriority,
-        high: highPriority
+        high: highPriority,
       },
-      progressPercent
+      progressPercent,
     });
   } catch (error) {
-    return res.status(500).json({ message: "Server error", error: error.message });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
   }
 };

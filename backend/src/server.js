@@ -1,14 +1,16 @@
+// server.js
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from "path";
+import { fileURLToPath } from "url";
 
 import connectDB from './config/db.js';
-import startDueScheduler from './utils/due_scheduler.js'; // ✅ only once
+import startDueScheduler from './utils/due_scheduler.js';
+import locationSocket from "./utils/location_socket.js"; // ✅ Import socket handler
 
 // Load environment variables
 dotenv.config();
@@ -42,10 +44,10 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
-// Attach io instance to app (so you can access it in controllers)
+// Attach io instance to app (so you can access it in controllers if needed)
 app.set("io", io);
 
-// Route imports
+// ✅ Import routes
 import emergencyRoutes from './routes/emergency_routes.js';
 import moodLogRoutes from './routes/moodlog_routes.js';
 import healthLogRoutes from './routes/healthlog_routes.js';
@@ -57,9 +59,11 @@ import taskRoutes from "./routes/task_routes.js";
 import progressRoutes from "./routes/progress_routes.js";
 import calenderRoutes from "./routes/calender_routes.js";
 import locationRoutes from "./routes/location_routes.js";
-import notificationRoutes from './routes/notification_routes.js'; // ✅ NEW
+import notificationRoutes from './routes/notification_routes.js';
+import sosRoutes from "./routes/sos_routes.js";
 
-// Mount API routes
+
+// ✅ Mount API routes
 app.use('/api/emergency', emergencyRoutes);
 app.use('/api/moodlogs', moodLogRoutes);
 app.use('/api/healthlogs', healthLogRoutes);
@@ -71,9 +75,14 @@ app.use('/api/link', linkRoutes);
 app.use("/api/progress", progressRoutes);
 app.use("/api/calenders", calenderRoutes);
 app.use("/api/location", locationRoutes);
-app.use("/api/notifications", notificationRoutes); // ✅ NEW
+app.use("/api/notifications", notificationRoutes);
 
-// Notifications EJS page
+
+
+
+app.use("/api/sos", sosRoutes);
+
+// Notifications demo EJS page
 app.get('/notifications', (req, res) => {
   const demoUserId = "demo123"; // TODO: Replace with real user ID from session or token
   res.render('notifications', { userId: demoUserId });
@@ -84,24 +93,9 @@ app.get('/', (req, res) => {
   res.send('🚑 HealSync API Running');
 });
 
-// Socket.io connection
-io.on("connection", (socket) => {
-  console.log("✅ New client connected:", socket.id);
-
-  // User-specific socket room join
-  socket.on("register", ({ userId }) => {
-    if (!userId) return;
-    socket.join(String(userId));
-    console.log(`📌 Socket ${socket.id} joined room ${userId}`);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("❌ Client disconnected:", socket.id);
-  });
-});
-
-// Start background due scheduler
-startDueScheduler(io);
+// ✅ Initialize socket handlers
+locationSocket(io);          // 📍 Live location sharing
+startDueScheduler(io);       // ⏰ Background due-date notifications
 
 // Start the server
 server.listen(PORT, () => {

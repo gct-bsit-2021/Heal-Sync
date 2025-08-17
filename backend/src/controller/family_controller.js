@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import Family from "../models/Family.js";
-import generateToken from "../utils/generatetoken.js";
+import generateToken from "../utils/generateToken.js";
 
 // Signup new family member
 export const registerFamily = async (req, res) => {
@@ -23,7 +23,7 @@ export const registerFamily = async (req, res) => {
       password: hashedPassword,
     });
 
-    const token = generateToken(familyMember._id);
+    const token = generateToken(familyMember._id, "family");
 
     console.log("Family signup success for:", email);
 
@@ -31,6 +31,7 @@ export const registerFamily = async (req, res) => {
       _id: familyMember._id,
       fullName: familyMember.fullName,
       email: familyMember.email,
+      role: "family",
       token,
     });
   } catch (error) {
@@ -54,12 +55,13 @@ export const loginFamily = async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    const token = generateToken(familyMember._id);
+    const token = generateToken(familyMember._id, "family");
 
     res.json({
       _id: familyMember._id,
       fullName: familyMember.fullName,
       email: familyMember.email,
+      role: "family",
       token,
     });
   } catch (error) {

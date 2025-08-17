@@ -1,52 +1,94 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title>HealSync Notifications</title>
-  <style>
-    body { font-family: system-ui, sans-serif; margin: 24px; }
-    .toast {
-      position: fixed; right: 16px; top: 16px; padding: 12px 16px;
-      border-radius: 10px; box-shadow: 0 10px 24px rgba(0,0,0,.15);
-      background: #fff; border: 1px solid #eee;
-    }
-    .list { margin-top: 16px; }
-    .item { padding: 10px 12px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 8px; }
-  </style>
-</head>
-<body>
-  <h2>Notifications</h2>
-  <div class="list" id="list"></div>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const userId = "<%= userId %>"; // passed from server
-    const socket = io();
-
-    // Join a room that's the user's ID
-    socket.emit("register", { userId });
-
-    // render function
-    function addItem(msg) {
-      const div = document.createElement("div");
-      div.className = "item";
-      div.textContent = msg;
-      document.getElementById("list").prepend(div);
-    }
-
-    // simple toast
-    function toast(msg) {
-      const t = document.createElement("div");
-      t.className = "toast";
-      t.textContent = msg;
-      document.body.appendChild(t);
-      setTimeout(() => t.remove(), 3000);
-    }
-
-    socket.on("notification", (n) => {
-      toast(n.message);
-      addItem(n.message);
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>🚨 SOS Alert - HealSync</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f8f9fa;
+        color: #333;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 2px solid #e63946;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 22px;
+        color: #e63946;
+      }
+      .content {
+        margin: 20px 0;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #e63946;
+      }
+      .btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 18px;
+        background: #e63946;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 15px;
+      }
+      .btn:hover {
+        background: #c72532;
+      }
+      .footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 13px;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🚨 SOS Alert</h1>
+      </div>
+      <div class="content">
+        <p>Hello,</p>
+        <p>
+          Your linked patient <span class="highlight"><%= patientName %></span>
+          has triggered an <span class="highlight">SOS emergency alert</span>.
+        </p>
+        <p>
+          📍 Last known location:<br />
+          Latitude: <b><%= latitude %></b>, Longitude: <b><%= longitude %></b>
+        </p>
+        <p>
+          Click below to view on Google Maps:
+        </p>
+        <p>
+          <a
+            href="https://www.google.com/maps?q=<%= latitude %>,<%= longitude %>"
+            class="btn"
+            target="_blank"
+            >View Location</a
+          >
+        </p>
+      </div>
+      <div class="footer">
+        <p>HealSync Safety System</p>
+      </div>
+    </div>
+  </body>
 </html>

@@ -6,10 +6,9 @@ const calenderSchema = new mongoose.Schema(
     location: { type: String, required: true },
     date: { type: String, required: true },
     time: { type: String, required: true },
-     createdBy: { type: String, enum: ["family", "patient"], required: true },
     completed: { type: Boolean, default: false },
-    
-    // 👇 add this for patient + linked family visibility
+
+    // 👇 Yeh zaroori hai, warna linking impossible
     belongsTo: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
