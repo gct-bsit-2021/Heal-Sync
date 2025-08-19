@@ -1,59 +1,65 @@
-// controllers/location_controller.js
 import Location from "../models/Location.js";
 import { getLinkedUserId } from "../utils/linkedid.js";
-import mongoose from "mongoose";
 
-// Patient updates their live location
+/**
+ * Patient updates location
+ * (frontend ko location.latitude/longitude dena hoga - browser ya mobile se fetch hoga)
+ */
 export const updateLocation = async (req, res) => {
   try {
-    const { latitude, longitude } = req.body;
+    if (req.user.role !== "patient") {
+      return res.status(403).json({ message: "Only patients can update location" });
+    }
 
+    const { latitude, longitude } = req.body;
     if (!latitude || !longitude) {
       return res.status(400).json({ message: "Latitude and longitude required" });
     }
 
-    // patientId is from req.user._id
     const patientId = req.user._id;
 
     const location = await Location.findOneAndUpdate(
       { patient: patientId },
       { latitude, longitude, updatedAt: Date.now() },
-      { new: true, upsert: true } // create if not exist
+      { new: true, upsert: true }
     );
 
-    res.json({ success: true, location });
+    return res.json({ success: true, location });
   } catch (err) {
-    res.status(500).json({ message: "Error updating location", error: err.message });
+    console.error("updateLocation error:", err);
+    return res.status(500).json({ message: "Error updating location" });
   }
 };
 
-// controller/location_controller.js
+/**
+ * Get patient's current location
+ * - If role = patient → apna location
+ * - If role = family → linked patient ka location
+ */
 export const getLocation = async (req, res) => {
   try {
     let patientId;
 
     if (req.user.role === "patient") {
-      patientId = req.user._id;  // ✅ always ObjectId
+      patientId = req.user._id;
     } else if (req.user.role === "family") {
       const linkedUser = await getLinkedUserId(req.user._id, "family");
       if (!linkedUser) {
         return res.status(404).json({ message: "No linked patient" });
       }
-      patientId = linkedUser._id;  // ✅ use ObjectId directly
+      patientId = linkedUser._id;
+    } else {
+      return res.status(403).json({ message: "Invalid role" });
     }
 
     const location = await Location.findOne({ patient: patientId });
-
     if (!location) {
       return res.status(404).json({ message: "No location found for patient" });
     }
 
-    res.json({ success: true, location });
+    return res.json({ success: true, location });
   } catch (err) {
-    console.error("❌ getLocation error:", err);
-    res.status(500).json({ message: "Server error" });
+    console.error("getLocation error:", err);
+    return res.status(500).json({ message: "Error fetching location" });
   }
 };
-
-
-

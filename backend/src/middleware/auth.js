@@ -15,11 +15,11 @@ export const protect = async (req, res, next) => {
       }
 
       if (decoded.role === "patient") {
-        req.user = await Patient.findById(decoded.id).select("-password");
+        req.user = await Patient.findById(decoded._id).select("-password");
         if (!req.user) return res.status(404).json({ message: "Patient not found" });
         req.user.role = "patient";
       } else if (decoded.role === "family") {
-        req.user = await Family.findById(decoded.id).select("-password");
+        req.user = await Family.findById(decoded._id).select("-password");
         if (!req.user) return res.status(404).json({ message: "Family member not found" });
         req.user.role = "family";
       } else {

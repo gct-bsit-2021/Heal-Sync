@@ -60,7 +60,14 @@ import progressRoutes from "./routes/progress_routes.js";
 import calenderRoutes from "./routes/calender_routes.js";
 import locationRoutes from "./routes/location_routes.js";
 import notificationRoutes from './routes/notification_routes.js';
-import sosRoutes from "./routes/sos_routes.js";
+ import sosRoutes from "./routes/sos_routes.js";
+import { sendMail } from "./utils/mailer.js";
+
+sendMail({
+  to: "your-other-email@gmail.com",
+  subject: "Test Mail",
+  html: "<h2>Hello from HealSync SOS</h2>",
+});
 
 
 // ✅ Mount API routes
@@ -80,7 +87,7 @@ app.use("/api/notifications", notificationRoutes);
 
 
 
-app.use("/api/sos", sosRoutes);
+ app.use("/api/sos", sosRoutes);
 
 // Notifications demo EJS page
 app.get('/notifications', (req, res) => {
@@ -94,8 +101,8 @@ app.get('/', (req, res) => {
 });
 
 // ✅ Initialize socket handlers
-locationSocket(io);          // 📍 Live location sharing
-startDueScheduler(io);       // ⏰ Background due-date notifications
+locationSocket(io);         
+startDueScheduler(io);        
 
 // Start the server
 server.listen(PORT, () => {

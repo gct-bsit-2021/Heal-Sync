@@ -1,7 +1,7 @@
 import Link from "../models/Link.js";
 import Patient from "../models/Patient.js";
 import Family from "../models/Family.js";
-import User from "../models/User.js"; // ✅ make sure you import User
+import User from "../models/User.js"; 
 import bcrypt from "bcryptjs";
 import { getLinkedUserId } from "../utils/linkedid.js";
 
@@ -36,6 +36,7 @@ export const linkPatient = async (req, res) => {
         .status(400)
         .json({ message: "Email and password are required" });
     }
+console.log("req.user from protect:", req.user);
 
     // Find the logged-in family account
     const family = await Family.findById(req.user._id);

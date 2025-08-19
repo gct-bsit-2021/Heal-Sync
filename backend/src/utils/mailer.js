@@ -1,37 +1,29 @@
 // utils/mailer.js
-import nodemailer from "nodemailer";
+import * as nodemailer from "nodemailer";
 
-export const sendMail = async (patientName, latitude, longitude, familyEmails) => {
+
+export const sendMail = async ({ to, subject, html }) => {
   try {
-    // 1. Create a test account (Ethereal provides fake SMTP creds automatically)
-    let testAccount = await nodemailer.createTestAccount();
-
-    // 2. Create transporter using Ethereal
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
+    const transporter = nodemailer.createTransport({
+      service: "gmail",   // ya SMTP details
       auth: {
-        user: testAccount.user,
-        pass: testAccount.pass,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    // 3. Define email
     const mailOptions = {
-      from: '"SOS Alert" <sos@example.com>',
-      to: familyEmails.join(","), // fake or real, Ethereal doesn’t care
-      subject: `🚨 SOS Alert from ${patientName}`,
-      html: `<p>Patient <b>${patientName}</b> pressed SOS!</p>
-             <p>Location: <a href="https://maps.google.com/?q=${latitude},${longitude}" target="_blank">Open in Google Maps</a></p>`,
+      from: `"Emergency Alert" <${process.env.EMAIL_USER}>`,
+      to,   // string ya array.join(",")
+      subject,
+      html,
     };
 
-    // 4. Send email
-    let info = await transporter.sendMail(mailOptions);
-
-    console.log("✅ SOS Email sent (Ethereal)");
-    console.log("📩 Preview URL:", nodemailer.getTestMessageUrl(info));
-
+    const info = await transporter.sendMail(mailOptions);
+    console.log("✅ Mail sent:", info.messageId);
+    return true;
   } catch (error) {
-    console.error("❌ Error sending SOS email:", error);
+    console.error("❌ Mail send error:", error.message);
+    return false;
   }
 };

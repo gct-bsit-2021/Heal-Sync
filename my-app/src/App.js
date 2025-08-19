@@ -28,6 +28,7 @@ import NotificationAlert from './Components/Pages/NotificationAlert';
 import LinkPatientpage from './Components/Pages/LinkPatientPage';
 import LoggingPatient from './Components/Pages/LoggingPatient';
 import Resource from './Components/Pages/Resource'; 
+//import SosPage from './Components/Pages/SosPage';
 
 // ✅ Corrected path for Location
 import Location from './Components/Pages/Locations/Location';  
@@ -89,7 +90,8 @@ const router = createBrowserRouter([
   { path: "/logging", element: <Logging/> },
   { path: "/notification", element: <NotificationAlert/> },
   { path: "/homecare", element: <Homecare/> },
-  { path: "/sos", element: <><Navbar/><Sosbutton/></> },
+  { path: "/sos", element: <><Navbar/><Sosbutton/></> },   //  patient side (press button)
+  //{ path: "/sos-alerts", element: <><Navbar/><SosPage/></> },
   { path: "/button", element: <><Navbar/><Button/></> },
   { path: "/dashbord", element: <Dashboard/> },
   { path: "/task", element: <Task/>, children: [{ path: "taasklist", element: <TaaskList/> }] },

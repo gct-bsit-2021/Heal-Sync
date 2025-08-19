@@ -1,41 +1,55 @@
-// controllers/sos_controller.js
-import Link from "../models/Link.js";
-import Location from "../models/Location.js";
+// controller/sos_controller.js
+import { getLinkedEmail } from "../utils/linkedEmail.js";
+import { sendMail } from "../utils/mailer.js";
+import Sos from "../models/Sos.js";
 
-export const sendSOS = async (req, res) => {
+export const pressSOS = async (req, res) => {
   try {
-    let pId, fId;
-
-    // ✅ Resolve patient and family like addAppointment
-    if (req.user.role === "patient") {
-      pId = req.user._id;
-      const link = await Link.findOne({ patientId: pId });
-      if (link) fId = link.familyId;
-    } else if (req.user.role === "family") {
-      fId = req.user._id;
-      const link = await Link.findOne({ familyId: fId });
-      if (link) pId = link.patientId;
+    // only patients can press SOS
+    if (req.user?.role !== "patient") {
+      return res.status(403).json({ message: "Only patients can press SOS" });
     }
 
-    if (!pId || !fId) {
-      return res.status(400).json({ message: "Could not resolve patient & family link" });
+    const patientId = req.user._id; // ✅ from JWT (consistent with generateToken.js)
+    const familyEmail = await getLinkedEmail(patientId, "patient");
+
+    if (!familyEmail) {
+      return res.status(404).json({ message: "No linked family email found" });
     }
 
-    // ✅ Fetch latest patient location (same as /location/view)
-    const latestLocation = await Location.findOne({ userId: pId })
-      .sort({ createdAt: -1 }) // latest entry
-      .lean();
+    // Build a simple email (no lat/lng). Family should visit app to see live location.
+    const patientDisplayName =
+      req.user?.name || req.user?.fullName || req.user?.email || "Patient";
 
-    // 🚨 SOS confirmed with location
-    return res.status(200).json({
-      success: true,
-      message: "🚨 SOS triggered successfully",
-      patient: pId,
-      notifiedFamily: fId,
-      location: latestLocation || "No location found",
+    const appUrl = process.env.FRONTEND_URL || "https://yourapp.com";
+    const locationPage = `${appUrl}/location`; // family viewer page in your web app
+
+    const html = `
+      <p><b>${patientDisplayName}</b> just pressed <b>SOS</b>.</p>
+      <p>Please open the live location here:</p>
+      <p><a href="${locationPage}" target="_blank" rel="noopener noreferrer">${locationPage}</a></p>
+    `;
+
+    const mailOk = await sendMail({
+      to: familyEmail,
+      subject: `🚨 SOS Alert from ${patientDisplayName}`,
+      html,
     });
-  } catch (error) {
-    console.error("triggerSOS error:", error);
-    return res.status(500).json({ message: "Server error", error: error.message });
+
+    // Log SOS event (optional but helpful)
+    await Sos.create({
+      patient: patientId,
+      sentTo: [familyEmail],
+      message: "Patient pressed SOS (email sent with link to live location).",
+    });
+
+    if (!mailOk) {
+      return res.status(500).json({ message: "Failed to send SOS email" });
+    }
+
+    return res.json({ success: true, message: "SOS alert sent to linked family email" });
+  } catch (err) {
+    console.error("pressSOS error:", err.message);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
