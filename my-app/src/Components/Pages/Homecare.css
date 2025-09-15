@@ -1,0 +1,99 @@
+.about-container {
+  padding: 20px;
+}
+
+.about-header {
+  margin-bottom: 20px;
+}
+
+.about-title {
+  font-weight: bold;
+  padding: 20px;
+  color: skyblue;
+  padding-left: 50px;
+  font-size: 25px;
+}
+
+.about-description {
+  color: burlywood;
+  padding-left: 50px;
+  width: 500px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.about-cards {
+  display: flex;
+  justify-content: center;
+}
+
+.main-card {
+  width: 63rem;
+  height: 60rem;
+  margin-bottom: 40px;
+  border: none;
+}
+
+.inner-card {
+  width: 57rem;
+  height: 50rem;
+  margin-left: 45px;
+  margin-top: 38px;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.text-card {
+  width: 50rem;
+  font-size: 16px;
+  color: brown;
+  border: none;
+}
+
+.section-title {
+  font-weight: bold;
+  color: skyblue;
+}
+
+/* ✅ Responsiveness */
+@media (max-width: 900px) {
+  .main-card {
+    width: 95%;
+    height: auto;
+  }
+
+  .inner-card {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+  }
+
+  .text-card {
+    width: 100%;
+  }
+
+  .about-description {
+    width: 100%;
+    padding-left: 20px;
+  }
+
+  .about-title {
+    padding-left: 20px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-title {
+    font-size: 20px;
+  }
+
+  .about-description {
+    font-size: 16px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+}

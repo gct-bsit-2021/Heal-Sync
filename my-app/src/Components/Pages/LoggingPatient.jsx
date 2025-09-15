@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { loginUser } from "../../utils/authService";
-
-import Navbar from '../Frontend/Navbar';
 import './Logging.css';
 import { FaFacebookF } from "react-icons/fa";
 import { CiTwitter } from "react-icons/ci";
@@ -24,18 +22,17 @@ const LoggingPatient = () => {
       localStorage.setItem("token", response.token);
       localStorage.setItem("role", "patient");
       
-      alert("✅ Login successful!");
+      alert("Login successful!");
       navigate("/"); // redirect after login
     } catch (error) {
       console.error("Login error:", error);
-      alert(error.response?.data?.message || "❌ Login failed");
+      alert(error.response?.data?.message || " Login failed");
     }
   };
 
   return (
     <>
-      <Navbar />
-      <div className="login-container">
+     <div className="login-container">
         <form onSubmit={handleSubmit} className="login-form">
           <h2>Patient Login</h2>
 
@@ -60,19 +57,6 @@ const LoggingPatient = () => {
           <button type="submit">Login</button>
           <a className='aa' style={{ paddingLeft: "120px" }} href="/Sign">Sign up</a>
 
-          <div className="col" style={{ paddingLeft: "10px" }}>
-            <a href="#" style={{ border: "1px solid #EAEBD0", color: "white" }} className="fb btn">
-              <FaFacebookF /> Login with Facebook
-            </a>
-            <br /><br />
-            <a href="#" style={{ border: "1px solid #EAEBD0", color: "white" }} className="twitter btn">
-              <CiTwitter /> Login with Twitter
-            </a>
-            <br /><br />
-            <a href="#" style={{ border: "1px solid #EAEBD0", color: "white" }} className="google btn">
-              <FaGoogle /> Login with Google
-            </a>
-          </div>
         </form>
       </div>
     </>

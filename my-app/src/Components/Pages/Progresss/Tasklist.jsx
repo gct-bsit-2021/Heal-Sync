@@ -22,7 +22,7 @@ const TaskList = () => {
       const res = await axios.get(`${API}/api/tasks`, { headers });
       setTasks(res.data);
     } catch (err) {
-      console.error('❌ fetchTasks', err.response?.data || err.message);
+      console.error('fetchTasks', err.response?.data || err.message);
     }
   };
 
@@ -30,7 +30,7 @@ const TaskList = () => {
     try {
       const res = await axios.get(`${API}/api/progress`, { headers });
       const d = res.data;
-      // 🔁 Map backend keys -> UI keys this component expects
+      // Map backend keys -> UI keys this component expects
       setProgressData({
         total: d.totalTasks,
         completed: d.completedTasks,
@@ -43,7 +43,7 @@ const TaskList = () => {
         progressPercent: d.progressPercent,
       });
     } catch (err) {
-      console.error('❌ fetchProgress', err.response?.data || err.message);
+      console.error(' fetchProgress', err.response?.data || err.message);
     }
   };
 
@@ -58,7 +58,7 @@ const TaskList = () => {
       await fetchTasks();
       await fetchProgress();
     } catch (err) {
-      console.error('❌ completeTask', err.response?.data || err.message);
+      console.error(' completeTask', err.response?.data || err.message);
     }
   };
 
@@ -68,13 +68,13 @@ const TaskList = () => {
       await fetchTasks();
       await fetchProgress();
     } catch (err) {
-      console.error('❌ deleteTask', err.response?.data || err.message);
+      console.error(' deleteTask', err.response?.data || err.message);
     }
   };
 
   return (
     <div style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}>
-      <h2 style={{ color: "brown", fontWeight: "bold", paddingBottom: "20px" }}>
+      <h2 style={{ color: "#AF3E3E", fontWeight: "bold", paddingBottom: "20px" }}>
         Task Progress Overview
       </h2>
 
@@ -83,18 +83,20 @@ const TaskList = () => {
 
       <hr style={{ margin: '20px 0' }} />
 
-      <h3 style={{ marginTop: '30px' }}>All Tasks</h3>
+      <h3 style={{ marginTop: '30px', backgroundColor:" #EAEBD0",paddingBottom:"10px",fontWeight:"bold",color:"#AF3E3E" }}>All Tasks</h3>
       {tasks.length === 0 ? (
-        <p style={{ color: "brown" }}>No tasks yet. Start by adding one.</p>
+        <p style={{ color: "#AF3E3E",paddingLeft:"52px", backgroundColor:" #EAEBD0",paddingTop:"10px",paddingBottom:'10px',fontWeight:"bold"}}>No tasks yet. Start by adding one.</p>
       ) : (
         tasks.map(task => (
-          <div key={task._id} style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+          <div key={task._id} style={{color: "#AF3E3E", display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
             <span>{task.title} ({task.priority}) - {task.status}</span>
+            <br/>
             <div>
               {task.status !== "completed" && (
-                <button onClick={() => completeTask(task._id)}>Complete</button>
+                <button  className="button-33" style={{marginBottom:"20px"}} onClick={() => completeTask(task._id)}>Complete</button>
               )}
-              <button onClick={() => deleteTask(task._id)} style={{ marginLeft: "5px" }}>Delete</button>
+              
+              <button  className="button-33"  onClick={() => deleteTask(task._id)} style={{ marginLeft:"30px" }}>Delete</button>
             </div>
           </div>
         ))

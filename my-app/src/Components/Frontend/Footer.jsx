@@ -9,7 +9,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <>
-      <div className="footer-container">
+     <div className="footer-container">
         <footer className="footer">
 
 
@@ -40,16 +40,20 @@ const Footer = () => {
                         </div>
                         <ul className="footer-link-list">
                           <li>
-                            <a href="#" className="footer-link">Vedios</a>
+                            <a  href="https://www.youtube.com/results?search_query=healsync+tutorial"
+        target="_blank"
+        rel="noopener noreferrer" className="footer-link">Vedios</a>
                           </li>
                           <li>
-                            <a href="/blog" className="footer-link">Blog</a>
+                            <a  href="https://www.youtube.com/results?search_query=healthcare+technology+blog"
+        target="_blank"
+        rel="noopener noreferrer" className="footer-link">Blog</a>
                           </li>
                           <li>
-                            <a href="#" className="footer-link">Services</a>
+                            <a href="/dashbord" className="footer-link">Services</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">About</a>
+                            <a href="/homecare" className="footer-link">About</a>
                           </li>
                         </ul>
                       </div>
@@ -61,19 +65,19 @@ const Footer = () => {
                         </div>
                         <ul className="footer-link-list">
                           <li>
-                            <a href="#overview" className="footer-link">Home Page</a>
+                            <a href="/" className="footer-link">Home Page</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">Login</a>
+                            <a href="login" className="footer-link">Login</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">Notification</a>
+                            <a href="/notification" className="footer-link">Notification</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">Resource Center</a>
+                            <a href="/resourcecenter" className="footer-link">Resource Center</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">SOS Button</a>
+                            <a href="/sos" className="footer-link">SOS Button</a>
                           </li>
                         </ul>
                       </div>
@@ -85,16 +89,24 @@ const Footer = () => {
                         </div>
                         <ul className="footer-link-list">
                           <li>
-                            <a href="#overview" className="footer-link">Contact</a>
+                            <a href="https://www.google.com/search?q=healSync+faq"
+        target="_blank"
+        rel="noopener noreferrer" className="footer-link">FAQ</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">Documentation</a>
+                            <a href="https://www.google.com/search?q=healSync+api+documentation"
+        target="_blank"
+        rel="noopener noreferrer" className="footer-link">Documentation</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">Aritcal</a>
+                            <a href="https://www.google.com/search?q=health+care+articles"
+        target="_blank"
+        rel="noopener noreferrer" className="footer-link">Aritcal</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">Resources</a>
+                            <a  href="https://www.google.com/search?q=caregiver+resources"
+        target="_blank"
+        rel="noopener noreferrer" className="footer-link">Resources</a>
                           </li>
                         </ul>
                       </div>
@@ -106,13 +118,19 @@ const Footer = () => {
                         </div>
                         <ul className="footer-link-list">
                           <li>
-                            <a href="#overview" className="footer-link">Term of services</a>
+                            <a  href="https://www.google.com/search?q=HealSync+term+of+services"
+      target="_blank"
+      rel="noopener noreferrer"  className="footer-link">TermOfServices</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">Privacy policy</a>
+                            <a  href="https://www.google.com/search?q=HealSync+privacy+policy"
+      target="_blank"
+      rel="noopener noreferrer" className="footer-link">PrivacyPolicy</a>
                           </li>
                           <li>
-                            <a href="#overview" className="footer-link">Cookie setting</a>
+                            <a href="https://www.google.com/search?q=HealSync+cookie+setting"
+      target="_blank"
+      rel="noopener noreferrer" className="footer-link">CookieSetting</a>
                           </li>
                           
                         </ul>

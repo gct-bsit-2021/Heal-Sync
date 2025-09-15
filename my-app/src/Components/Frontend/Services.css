@@ -1,0 +1,79 @@
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 10px;
+  justify-items: center;
+}
+.main-heading {
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #AF3E3E;
+  padding-top: 30px;
+}
+.main-heading:hover{
+  color:#EAEBD0;
+}
+.flip-scene {
+  perspective: 1000px;
+  width: 250px;
+  height: 200px;
+}
+
+.flip-card {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-scene:hover .flip-card {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.flip-front {
+  background: linear-gradient(135deg, #6dd5fa, #2980b9);
+  color: #EAEBD0 ;
+}
+
+.flip-back {
+  background: #f1f1f1;
+  transform: rotateY(180deg);
+}
+
+.flip-back button {
+  padding: 10px 20px;
+  border: none;
+  background: #2980b9;
+  color: #EAEBD0 ;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.flip-back button:hover {
+  background: #1f6391;
+}
+
+@media (max-width: 900px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}

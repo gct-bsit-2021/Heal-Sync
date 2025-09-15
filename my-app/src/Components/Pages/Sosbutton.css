@@ -8,6 +8,60 @@
     color: #EAEBD0;
     
 }
+.button-52{
+  margin-left: 700px;
+}
+.button-52 {
+  font-size: 15px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid #AF3E3E;
+  margin-top: 20px;
+  cursor: pointer;
+  color:#AF3E3E;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-52:after {
+  content: "";
+  background-color:#EAEBD0 ;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+.button-52:hover:after {
+  top: 0px;
+  left: 0px;
+}
+@media (max-width: 900px) {
+  .button-52 {
+    margin-left: 280px; /* thoda adjust ho jaye */
+  }
+}
+
+@media (min-width: 768px) {
+  .button-52 {
+    padding: 13px 50px 13px;
+  }
+}
+
+@media (max-width: 900px) {
+  .sos {
+    font-size: 35px;
+    margin: 30px auto;
+    width: 60%;
+    padding-left:160px ;
+  }
+}
 .animated-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 12px;

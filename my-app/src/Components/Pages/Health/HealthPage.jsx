@@ -1,4 +1,3 @@
-// src/Health/HealthPage.jsx
 import React, { useState, useEffect } from 'react';
 import HealthForm from '../Health/Healthform';
 import HealthStatus from './HealthStatus';
@@ -86,13 +85,13 @@ const HealthPage = () => {
   };
 
   return (
-    <div style={{ maxWidth: '700px', margin: 'auto', padding: '20px' }}>
+     <div style={{ maxWidth: '700px', margin: 'auto', padding: '20px' }}>
       <h2 style={{
         backgroundColor: '#EAEBD0',
         paddingBottom: '20px',
         paddingLeft: '50px',
         paddingTop: '20px',
-        color: 'brown'
+        color: '#AF3E3E'
       }}>
         Health Monitor
       </h2>

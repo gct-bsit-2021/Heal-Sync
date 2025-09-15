@@ -1,34 +1,69 @@
-.log{
+.log {
     width: 100%;
     height: 400%;
     display: flex;
-    gap: 10rem;
+    gap: 6rem;
     padding-left: 150px;
     padding-top: 100px;
+    flex-wrap: wrap; /* choti screen pe line break ho jaye */
 }
-.log .box1{
-    border: 2px solid brown;
+
+.log .box1 {
+    border: 2px solid #AF3E3E;
+    width: 17rem;
+    height: 9rem;
+    transition: all 0.3s ease; /* smooth resizing */
 }
 
 .log .box1 .p {
     font-weight: bold;
     padding-left: 30px;
-    color: brown;
-    
+    color: #AF3E3E;
+    margin-top: 16px;
+    margin-left: 20px;
 }
+
 .log .box1 .f {
     font-weight: bold;
     padding-left: 65px;
-    color: brown;
+    color: #AF3E3E;
+     margin-top: 16px;
+    margin-left: 18px;
 }
-.box1:hover{
+
+.box1:hover {
     background-color: #EAEBD0;
 }
 
-.log .box1 .bw{
+.log .box1 .bw {
     font-weight: bold;
-   margin-left: 63px;
-   color: #EAEBD0;
+    margin-left: 76px;
+    color: #EAEBD0;
+
 }
 
 
+@media (max-width: 900px) {
+    .log {
+        flex-direction: column; /* boxes column me aa jaye */
+        align-items: center;
+        gap: 2rem;
+        padding: 20px;
+    }
+    .box1 {
+        width: 90%;
+        max-width: 20rem;
+        height: auto;
+        padding: 1rem;
+    }
+    .log .box1 .p,
+    .log .box1 .f
+     {
+        padding-left: 0;
+        margin-left: 0;
+        text-align: center;
+    }
+    .bw{
+       text-align: center;
+    }
+}

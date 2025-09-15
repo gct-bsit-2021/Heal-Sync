@@ -3,7 +3,7 @@ import React from 'react';
 const ProgressBar = ({ percentage }) => {
   return (
     <div style={{ marginBottom: '20px' }}>
-      <h4 style={{color:"brown"}}>Progress: {percentage}%</h4>
+      <h4 style={{color:"#AF3E3E"}}>Progress: {percentage}%</h4>
       <div style={{ height: '20px', backgroundColor: '#eee', borderRadius: '5px' }}>
         <div
           style={{

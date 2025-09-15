@@ -20,7 +20,7 @@ const TaskList = () => {
     const res = await axios.get(`${API}/api/tasks`, { headers });
     setTasks(res.data); // res.data contains the tasks
   } catch (error) {
-    console.error('❌ Error fetching tasks:', error.response?.data || error.message);
+    console.error(' Error fetching tasks:', error.response?.data || error.message);
   }
 };
 console.log("Token:", localStorage.getItem("token"));
@@ -38,7 +38,7 @@ useEffect(() => {
      fetchTasks(); 
       setTasks(prev => [data.task, ...prev]); // immediate UI update
     } catch (error) {
-      console.error('❌ Error adding task:', error.response?.data || error.message);
+      console.error(' Error adding task:', error.response?.data || error.message);
     }
   };
 
@@ -49,7 +49,7 @@ useEffect(() => {
       fetchTasks(); 
       setTasks(prev => prev.map(t => (t._id === id ? data.task : t)));
     } catch (error) {
-      console.error('❌ Error completing task:', error.response?.data || error.message);
+      console.error('Error completing task:', error.response?.data || error.message);
     }
   };
 
@@ -60,7 +60,7 @@ useEffect(() => {
       fetchTasks();
       setTasks(prev => prev.filter(t => t._id !== id));
     } catch (error) {
-      console.error('❌ Error deleting task:', error.response?.data || error.message);
+      console.error(' Error deleting task:', error.response?.data || error.message);
     }
   };
 
@@ -69,7 +69,7 @@ useEffect(() => {
       <TaskForm onAdd={addTask} />
 
       {tasks.length === 0 ? (
-        <p style={{ paddingLeft: '50px', paddingTop: '20px', color: 'brown', fontSize: '17px', fontWeight: 'bold' }}>
+        <p style={{ paddingLeft: '100px', paddingTop: '20px', color: '#AF3E3E', fontSize: '17px', fontWeight: 'bold' }}>
           No tasks yet.
         </p>
       ) : (

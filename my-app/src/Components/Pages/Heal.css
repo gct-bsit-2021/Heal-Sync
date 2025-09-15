@@ -1,0 +1,177 @@
+.about-container {
+  padding: 20px;
+}
+
+.about-heading {
+  font-weight: bold;
+  padding: 20px 0 10px 50px;
+  color: skyblue;
+  font-size: 25px;
+}
+
+.about-subtext {
+  color: burlywood;
+  padding-left: 50px;
+  width: 500px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Bootstrap Cards Styling */
+.about-card-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.about-card-outer {
+  width: 100%;
+  max-width: 63rem;
+  border: none !important;
+}
+
+.about-card-inner {
+  width: 100%;
+  max-width: 57rem;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  padding: 20px;
+}
+
+.section-heading {
+  font-weight: bold;
+  color: skyblue;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.about-text-card {
+  width: 100%;
+  max-width: 50rem;
+  font-size: 16px;
+  color: brown;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.bottomh {
+  margin-bottom: 20px;
+  margin-left: 50px;
+  color: #AF3E3E;
+}
+
+.bottoma1 {
+  text-decoration: none;
+  padding-left: 400px;
+  font-size: 20px;
+  padding-top: 5px;
+  color: #AF3E3E;
+}
+
+.bottoma2 {
+  text-decoration: none;
+  font-size: 20px;
+  padding-top: 5px;
+  color: #AF3E3E;
+}
+.bottoma3 {
+  text-decoration: none;
+  font-size: 20px;
+  padding-top: 5px;
+  color: #AF3E3E;
+}
+
+.bottom4 {
+  text-decoration: none;
+  font-size: 20px;
+  padding-top: 5px;
+  color: #AF3E3E;
+}
+
+.bottom {
+  padding-top: 50px;
+  display: flex;
+  gap: 33px;
+}
+.bar {
+  display: flex;
+  gap: 46rem;
+  padding-left: 49px;
+  font-size: 0.8rem;
+  border-top: 1px solid skyblue;
+  color: #AF3E3E;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+@media (max-width: 900px) {
+  .bottom {
+    flex-direction: column;  /* vertical ho jayega */
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bottomh {
+    margin-left: 0; /* left margin hata diya */
+    font-size: 1.5rem;
+  }
+
+  .bottoma1,
+  .bottoma2,
+  .bottoma3,
+  .bottom4 {
+    font-size: 18px;
+    padding-left: 0; /* 400px padding hat gayi */
+  }
+ .bar {
+    flex-direction: column;  /* text ek niche ek aa jayega */
+    gap: 5px;
+    text-align: center;
+    padding-left: 0; /* center align */
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .about-subtext {
+    width: 90%;
+    padding-left: 20px;
+    font-size: 18px;
+  }
+
+  .about-card-inner {
+    max-width: 90%;
+  }
+
+  .about-text-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-heading {
+    font-size: 20px;
+    padding-left: 20px;
+  }
+
+  .about-subtext {
+    font-size: 16px;
+    padding-left: 20px;
+  }
+
+  .about-card-inner {
+    padding: 15px;
+  }
+
+  .section-heading {
+    font-size: 18px;
+  }
+
+  .about-text-card {
+    font-size: 14px;
+  }
+}
+
+

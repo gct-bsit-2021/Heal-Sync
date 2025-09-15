@@ -5,11 +5,21 @@ import FeaturesPage from "./Notification/FeaturesPage";
 import { ToastContainer } from "react-toastify";
 import Footer from "../Frontend/Footer.jsx";
 import Card from "react-bootstrap/Card";
+import { NavLink } from 'react-router-dom';
 
 const NotificationAlert = () => {
+  const handleClick = () => {
+    console.log("Button clicked!");
+      };
   return (
     <>
       <Navbar />
+
+  <NavLink to="/dashbord">
+      <button onClick={handleClick}  class="button-52" >Go To Dashboard</button>
+      </NavLink>
+
+
       <NotificationsProvider>
         <div style={{ padding: "20px", maxWidth: "700px", margin: "auto" }}>
           <FeaturesPage />
@@ -22,6 +32,8 @@ const NotificationAlert = () => {
           style={{
             width: "100%",
             border: "none",
+            color:"#AF3E3E",
+            backdropColor:"#EAEBD0",
             boxShadow: "0 0 10px rgba(0, 123, 255, 0.3)",
             padding: "20px",
           }}
@@ -29,7 +41,7 @@ const NotificationAlert = () => {
           <h4 style={{ fontWeight: "bold", color: "skyblue", marginBottom: "16px" }}>
             About HealSync
           </h4>
-          <Card style={{ border: "none", color: "brown", fontSize: "16px" }}>
+          <Card style={{ border: "none", color: "#AF3E3E", fontSize: "16px" }}>
             <p>
               HealSync is a smart healthcare platform designed to help families keep their loved ones
               safe, healthy, and comfortable at home. We understand that many people prefer to receive

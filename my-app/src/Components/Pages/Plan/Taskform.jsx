@@ -1,4 +1,3 @@
-// frontend -> Pages/Plan/TaskForm.jsx
 import React, { useState } from 'react';
 import './Taskform.css';
 
@@ -36,15 +35,16 @@ const TaskForm = ({ onAdd }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      style={{ marginBottom: '20px', paddingLeft: '40px', paddingTop: '20px', paddingBottom: '20px' }}
+      className="animated-card"
+      style={{ marginRight:"80px",marginBottom: '20px', paddingLeft: '130px',marginLeft:"70px", paddingTop: '20px', paddingBottom: '20px',   backgroundColor:" #EAEBD0" }}
     >
       <input
         type="text"
         placeholder="Task title"
+        className="trd"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
-        style={{ border: '2px solid burlywood', borderRadius: '2px', backgroundColor: 'brown', color: 'burlywood', padding: '8px' }}
       />
 
       &nbsp;&nbsp;&nbsp;
@@ -52,9 +52,10 @@ const TaskForm = ({ onAdd }) => {
       <input
         type="date"
         value={deadline}
+        className="trd"
         onChange={(e) => setDeadline(e.target.value)}
         required
-        style={{ border: '2px solid burlywood', borderRadius: '2px', backgroundColor: 'brown', color: 'burlywood', padding: '8px' }}
+      
       />
 
       &nbsp;&nbsp;&nbsp;
@@ -62,7 +63,7 @@ const TaskForm = ({ onAdd }) => {
       <select
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
-        style={{ border: '2px solid burlywood', borderRadius: '2px', backgroundColor: 'brown', color: 'burlywood', padding: '8px' }}
+        className="trg"
       >
         <option value="low">Low</option>
         <option value="medium">Medium</option>

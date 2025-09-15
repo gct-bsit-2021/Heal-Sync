@@ -1,4 +1,3 @@
-// src/Components/Pages/Locations/LocationSender.jsx
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -45,7 +44,7 @@ const LocationSender = () => {
     };
   }, []);
 
-  if (!location) return <p>📍 Getting your location...</p>;
+  if (!location) return <p> Getting your location...</p>;
 
   return (
     <div style={{ height: "500px", width: "100%" }}>
@@ -59,7 +58,7 @@ const LocationSender = () => {
           attribution="&copy; OpenStreetMap contributors"
         />
         <Marker position={[location.latitude, location.longitude]} icon={markerIcon}>
-          <Popup>🧑 You are here</Popup>
+          <Popup> You are here</Popup>
         </Marker>
       </MapContainer>
     </div>

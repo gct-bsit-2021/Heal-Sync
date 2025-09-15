@@ -118,6 +118,7 @@ const Signup = () => {
 
         <input
           type="password"
+          
           name="confirmPassword"
           placeholder="Confirm Password"
           value={formData.confirmPassword}
@@ -126,13 +127,14 @@ const Signup = () => {
         {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
 
         {/* Role selector */}
-        <select name="role" value={formData.role} onChange={handleChange}>
-          <option value="patient">Patient</option>
-          <option value="family">Family</option>
+        <select name="role" value={formData.role} onChange={handleChange} style={{color:"#AF3E3E",outline:"none",padding:"5px"}} >
+          <option style={{color:"#AF3E3E"}} value="patient">Patient</option>
+          <option style={{color:"#AF3E3E"}}  value="family">Family</option>
         </select>
+        <br/>
 
         {serverError && <p className="error">{serverError}</p>}
-
+<br/>
         <button type="submit" disabled={loading}>
           {loading ? "Signing up..." : "Sign Up"}
         </button>

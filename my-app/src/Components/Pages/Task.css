@@ -1,4 +1,23 @@
-.p{
-    color: brown;
-    padding-left: 250px;
+.p {
+  color: #AF3E3E;
+  padding-left: 300px;
+  font-weight: 600;
+}
+
+/* 🌐 Tablet (≤768px) */
+@media (max-width: 900px) {
+  .p {
+    padding-left: 0;
+    text-align: center;
+    font-size: 22px;
+  }
+}
+
+/* 📱 Mobile (≤480px) */
+@media (max-width: 480px) {
+  .p {
+    padding-left: 0;
+    text-align: center;
+    font-size: 18px;
+  }
 }

@@ -1,4 +1,3 @@
-// src/Components/Pages/Locations/LocationViewer.jsx
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -24,7 +23,7 @@ const LocationViewer = () => {
       return;
     }
 
-    // 1️⃣ Fetch last known location first
+    //  Fetch last known location first
     fetch("http://localhost:5000/api/location/view", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -41,18 +40,18 @@ const LocationViewer = () => {
         console.error("Error fetching initial location:", err)
       );
 
-    // 2️⃣ Setup socket listener for live updates
+    //  Setup socket listener for live updates
     const socket = io(SOCKET_URL, { auth: { token } });
 
     socket.on("locationUpdated", ({ latitude, longitude }) => {
-      console.log("📍 Patient location received:", latitude, longitude);
+      console.log(" Patient location received:", latitude, longitude);
       setLocation({ latitude, longitude });
     });
 
     return () => socket.disconnect();
   }, []);
 
-  if (!location) return <p>⏳ Waiting for patient location...</p>;
+  if (!location) return <p> Waiting for patient location...</p>;
 
   return (
     <div style={{ height: "500px", width: "100%" }}>
@@ -69,7 +68,7 @@ const LocationViewer = () => {
           position={[location.latitude, location.longitude]}
           icon={markerIcon}
         >
-          <Popup>🚶 Patient's Live Location</Popup>
+          <Popup> Patient's Live Location</Popup>
         </Marker>
       </MapContainer>
     </div>

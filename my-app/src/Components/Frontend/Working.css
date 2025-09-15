@@ -6,6 +6,74 @@
     padding-top: 40px;
     padding-bottom: 50px;
 }
+.cea{
+    width: 56rem;
+    height:36rem;
+}
+.hj{
+    padding-left:145px ;
+    padding-top:30px;
+    color:#AF3E3E;
+    font-weight:bold;
+}
+.pa{
+    padding-left:370px;
+    font-size:20px;
+    padding-top:20px;
+    color: #AF3E3E;
+}
+.iyu{
+    margin-left:90px;
+    padding-top:38px;
+}
+.iop{
+    margin-left:160px;
+    padding-top:40px; 
+}
+.ikl{
+    margin-left:194px;
+    padding-top:40px;
+}
+.jk{
+    padding-top:20px;
+    padding-left:40px;
+    font-weight:bold;
+    color:#AF3E3E;
+}
+.hy{
+    padding-top:20px;
+    padding-left:60px;
+    font-weight:bold;
+    color:#AF3E3E;
+
+}
+.hg{
+    padding-top:20px;
+    font-weight:bold;
+    color:#AF3E3E;
+    padding-left:80px;
+        
+}
+.cvb{
+    width:13rem;
+    border:none;
+    color:#AF3E3E;
+}
+.txd{
+    padding-left:16px;
+}
+.bnm{
+    width: 13rem;
+    border:none;
+    color:#AF3E3E;
+    padding-left: 15px;
+}
+.bhj{
+    width: 13rem;
+    border:none;
+    color:#AF3E3E;
+    margin-left: 25px;
+}
 .worksimg img{
     width: 90px; 
 }
@@ -23,10 +91,88 @@
     align-items: center;
     justify-content: center;
     margin-left: 320px;
-    margin-right: 380px
+    margin-right: 380px;
+    margin-top:60px;
+
 }
 .workbtn:hover{
-    color: burlywood;
-    background-color: brown;
-    border: 3px solid burlywood;
+    color: #EAEBD0;
+    background-color:#AF3E3E ;
+    border: 3px solid #EAEBD0;
+
 }
+@media (max-width: 900px) {
+    .cea {
+        width: 90%;
+        height: auto;
+    }
+
+    .hj, .pa {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .worksimg {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        padding-top: 20px;
+    }
+
+    .iop, .ikl, .iyu {
+        margin-left: 0;
+        padding-top: 20px;
+    }
+
+    .worksss {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .workpara {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        padding-left: 0;
+    }
+
+    .cvb, .bnm, .bhj {
+        width: 90%;
+    }
+
+    .workbtn {
+        margin: 30px auto 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .worksimg img {
+        width: 70px;
+    }
+
+    .hj {
+        font-size: 18px;
+    }
+
+    .pa {
+        font-size: 16px;
+    }
+
+    .jk, .hy, .hg {
+        padding-left: 0;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .work {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .cvb, .bnm, .bhj {
+        font-size: 13px;
+        text-align: center;
+    }
+}
+

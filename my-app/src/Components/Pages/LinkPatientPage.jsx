@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Outlet } from 'react-router-dom';
 
 const LinkPatientPage = () => {
   const [patientEmail, setPatientEmail] = useState('');
@@ -27,7 +28,7 @@ const LinkPatientPage = () => {
     try {
       const res = await axios.post(
         "http://localhost:5000/api/link/link-patient",
-        { patientEmail, patientPassword }, // ✅ Correct keys
+        { patientEmail, patientPassword }, // Correct keys
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -52,15 +53,17 @@ const LinkPatientPage = () => {
     width: "100%",
     padding: "10px",
     marginBottom: "10px",
-    border: "1px solid brown",
-    borderRadius: "5px"
+    border: "1px solid #AF3E3E",
+    borderRadius: "5px",
+    outline:"none",
+    color:"#AF3E3E"
   };
 
   const buttonStyle = {
     width: "100%",
     padding: "10px",
     background: "#EAEBD0",
-    color: "brown",
+    color: "#AF3E3E",
     border: "none",
     borderRadius: "5px",
     cursor: loading ? 'not-allowed' : 'pointer'
@@ -68,7 +71,7 @@ const LinkPatientPage = () => {
 
   const formStyle = {
     padding: "20px",
-    background: "brown",
+    background: "#AF3E3E",
     borderRadius: "10px",
     boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
     width: "300px"

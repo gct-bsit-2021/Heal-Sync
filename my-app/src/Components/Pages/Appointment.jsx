@@ -1,25 +1,37 @@
 import React from 'react'
 import CalendarPage from './Appointments/CalendarPage';
-import {  NavLink } from 'react-router-dom';
-import Footer from '../Frontend/Footer';
+import Navbar from '../Frontend/Navbar.jsx'
+import { NavLink } from 'react-router-dom';
 const Appointment = () => {
-     const handleClick = () => {
+  const handleClick = () => {
     console.log("Button clicked!");
       };
   return (
     <>
-    <div  style={{}}>
-    <NavLink to="/">
-          <button style={{
-            marginTop:"20px",backgroundColor:"brown",color:"burlywood"
-          }} onClick={handleClick}  class="button-52" >Go To Heal Sync</button>
-          </NavLink>
-         
+    <div >
+   <Navbar/>
+         <NavLink to="/dashbord">
+      <button onClick={handleClick}  class="button-52" >Go To Dashboard</button>
+      </NavLink>
 
           <CalendarPage/>
 
-          <Footer/>
           </div>
+
+          <div className="bottom">
+       <h2 className="bottomh">Heal Sync</h2>
+    
+      <a href="/" className="bottoma1" >Home</a>
+      <a href="/benefits" className="bottoma2">About</a>
+      <a href="/advantage" className="bottoma3">Advantages</a>
+      <a href="/login" className="bottom4">Login</a>
+   
+      
+    </div>
+    <div className="bar">
+    <p>© Created by</p>
+    <p>All rights Reserved</p>
+   </div> 
     </>
   )
 }

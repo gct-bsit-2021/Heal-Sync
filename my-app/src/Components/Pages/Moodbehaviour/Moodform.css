@@ -1,10 +1,23 @@
+.moodselect{
+   display: block;
+   margin-top: 20px;
+   width: 100%;
+   border-radius: 7px;
+   color:#AF3E3E;
+   border: 2px solid #EAEBD0;
+   outline: none;
+}
+.moodselect:focus {
+  border-color: #D46A6A;     
+  box-shadow: 0 0 6px rgba(175, 62, 62, 0.6);
+}
 .button-28 {
  appearance: none;
   background-color: transparent;
-  border: 2px solid brown;
+  border: 2px solid #AF3E3E;
   border-radius: 15px;
   box-sizing: border-box;
-  color: brown;
+  color: #AF3E3E;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
@@ -17,4 +30,5 @@
   padding: 5px 15px;
    text-decoration: none;
 }
+
 

@@ -13,7 +13,7 @@
   border: 1px solid #EAEBD0;
   outline: none;
   background-color: #EAEBD0;
-  color: brown;
+  color: #AF3E3E;
   text-decoration: none; 
 }
 
@@ -27,22 +27,6 @@
   gap: 1rem;
   width: 350px;
 }
-
-.fb {
-  background-color: #3B5998;
-  color: white;
-}
-
-.twitter {
-  background-color: #55ACEE;
-  color: white;
-}
-
-.google {
-  background-color: #dd4b39;
-  color: white;
-}
-
 .login-form h2 {
   text-align: center;
   margin-bottom: 1rem;
@@ -53,14 +37,14 @@
   padding: 0.7rem;
   border: 1px solid #EAEBD0;
   border-radius: 5px;
-  color: #EAEBD0;
+  color: #AF3E3E;
   outline: none;
 }
 
 .login-form button {
   padding: 0.7rem;
   background: #EAEBD0;
-  color: brown;
+  color: #AF3E3E;
   border: none;
   border-radius: 5px;
   cursor: pointer;

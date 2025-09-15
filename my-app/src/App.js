@@ -27,7 +27,7 @@ import Logging from './Components/Pages/Logging';
 import NotificationAlert from './Components/Pages/NotificationAlert';
 import LinkPatientpage from './Components/Pages/LinkPatientPage';
 import LoggingPatient from './Components/Pages/LoggingPatient';
-import Resource from './Components/Pages/Resource'; 
+import Resource from './Components/Pages/Resource';
 //import SosPage from './Components/Pages/SosPage';
 
 // ✅ Corrected path for Location
@@ -35,6 +35,8 @@ import Location from './Components/Pages/Locations/Location';
 
 import ErrorBoundary from "./Components/ErrorBoundary";
 import RouteError from "./Components/RouteError";
+import Benefits from "./Components/Frontend/Benefits";
+import Advantages from "./Components/Frontend/Advantages";
 
 // Context
 //import { NotificationsProvider } from './Components/Pages/Notification/NotificationContext';
@@ -45,7 +47,15 @@ const router = createBrowserRouter([
   { path: "/footer", element: <><Navbar/><Footer/></> },
   { path: "/heal", element: <Heal/> },
   { path:"/resourcecenter", element:<Resource/> },
-
+  {path:"/benefits",element:
+  <div>
+  <Navbar/>,
+  <Benefits/>,
+  <Footer/>,
+  </div>},
+   { path:"/advantage", element:
+  <div>
+    <Navbar/>,<Advantages/>,<Footer/>,</div>},
   {
     path: "/location",
     element: (
@@ -90,14 +100,25 @@ const router = createBrowserRouter([
   { path: "/logging", element: <Logging/> },
   { path: "/notification", element: <NotificationAlert/> },
   { path: "/homecare", element: <Homecare/> },
-  { path: "/sos", element: <><Navbar/><Sosbutton/></> },   //  patient side (press button)
+  { path: "/sos", element: <><Navbar/><Sosbutton/></> },
+     //  patient side (press button)
   //{ path: "/sos-alerts", element: <><Navbar/><SosPage/></> },
   { path: "/button", element: <><Navbar/><Button/></> },
-  { path: "/dashbord", element: <Dashboard/> },
+  { 
+    path: "/dashbord", 
+    element:
+      <Dashboard/>,
+       },
   { path: "/task", element: <Task/>, children: [{ path: "taasklist", element: <TaaskList/> }] },
   { path: "/progress", element: <Progress/>, children: [{ path: "tasklist", element: <TaskList/> }] },
   { path: "/mood", element: <Mood/> },
-  { path: "/healthmontorning", element: <Healthmontorning/> },
+  { 
+    path: "/healthmontorning",
+     element: <div>
+      <Navbar/>
+  <Healthmontorning/>
+  </div>
+ },
   { path: "/calender", element: <Appointment/> },
   { path: "/work", element: <Work/> },
   { path: "/sign", element: <><Navbar/><Signup/></> },

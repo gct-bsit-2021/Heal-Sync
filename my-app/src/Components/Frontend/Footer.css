@@ -16,6 +16,7 @@
     justify-content: space-between;
     padding-right: 2rem;
 }
+
 .heal-logo{
     display: flex;
     justify-content:flex-start;
@@ -29,11 +30,11 @@
     font-size: 1.4rem;
     font-weight: bold;
     text-decoration: none;
-    color: brown;
+    color: #AF3E3E;
 }
 .filler-text{
     font-size: 0.9rem;
-    color: brown;
+    color: #AF3E3E;
     
 }
 .social-icon{
@@ -59,7 +60,7 @@
     padding-left: 30px;
     font-size: 1rem;
     font-weight: bold;
-    color: brown;
+    color: #AF3E3E;
     margin-bottom: 1.4rem;
 }
 ul{
@@ -67,7 +68,7 @@ ul{
 }
 .footer-link{
     text-decoration: none;
-    color: brown;
+    color: #AF3E3E;
     font-size: 0.8rem;
 }
 .footer-link-list{
@@ -81,19 +82,48 @@ ul{
     
 }
 .footer-copyright{
-    color:brown;
+    color:#AF3E3E;
     font-size: 0.75rem;
     padding-bottom: 2rem;
     margin-top: 2rem;
-    border-top:1px solid brown ;
+    border-top:1px solid #AF3E3E ;
    display: flex;
    justify-content: center;
     padding-top: 1rem;
 }
-@media screen  and(max-width:528px) {
-    .footer{
-        flex-direction: column;
-        align-items: center;
-    }
-    
+/* Tablets */
+@media screen and (max-width: 900px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns per row on tablet */
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .footer-top {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 528px) {
+  .footer-grid {
+    grid-template-columns: 1fr; /* stack columns vertically */
+    gap: 1rem;
+  }
+
+  .footer-top {
+    text-align: left;
+  }
+
+  .social {
+    justify-content: center;
+  }
 }

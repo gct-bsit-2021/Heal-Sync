@@ -36,7 +36,7 @@ const CalendarPage = () => {
     try {
       const payload = {
         title: appt.title,
-        location: appt.location, // ✅ updated here
+        location: appt.location, //  updated here
         date: appt.date,
         time: appt.time,
         createdBy:role, 
@@ -79,21 +79,21 @@ const CalendarPage = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2 style={{ color: "brown", paddingLeft: "20px", fontWeight: "bold", fontSize: "40px", marginBottom: "20px" }}>
-        Shared Calendar
+     <div style={{ padding: '20px' }}>
+      <h2 style={{ color: "#AF3E3E",display:"flex",justifyContent:"center",marginTop:"20px", fontWeight: "bold", fontSize: "35px", marginBottom: "30px" }}>
+        Shared Calendar & Appointment
       </h2>
 
-      <div style={{ marginBottom: '10px' }}>
-        <label style={{ paddingLeft:"20px", fontSize:"20px", color:"brown" }}>Select Role:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <select style={{ border:"1px solid brown", color:"brown", borderRadius:"2px" }} value={role} onChange={(e) => setRole(e.target.value)}>
-          <option style={{ backgroundColor:'burlywood', color:"brown" }} value="family">Family Member</option>
-          <option style={{ backgroundColor:'burlywood', color:"brown" }} value="patient">Patient</option>
+      <div style={{ marginBottom: '30px' ,paddingLeft:"160px"}}>
+        <label style={{ paddingLeft:"20px", fontSize:"20px", color:"#AF3E3E" }}>Select Role:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <select style={{ border:"1px solid #AF3E3E", color:"#AF3E3E", borderRadius:"2px" }} value={role} onChange={(e) => setRole(e.target.value)}>
+          <option style={{ backgroundColor:'#EAEBD0', color:"#AF3E3E" }} value="family">Family Member</option>
+          <option style={{ backgroundColor:'#EAEBD0;', color:"#AF3E3E" }} value="patient">Patient</option>
         </select>
 
-        <label style={{ paddingLeft:"30px", fontSize:"20px", color:"brown" }}>Current User:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label style={{ paddingLeft:"30px", fontSize:"20px", color:"#AF3E3E" }}>Current User:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <input
-          style={{ border:"1px solid brown", color:"brown", borderRadius:"2px" }}
+          style={{ border:"1px solid #AF3E3E", color:"#AF3E3E", borderRadius:"2px" }}
           value={currentUser}
           onChange={(e) => setCurrentUser(e.target.value)}
           placeholder="Enter your name"
@@ -101,7 +101,7 @@ const CalendarPage = () => {
       </div>
 
       {loading ? (
-        <p style={{ color: "brown", fontWeight: "bold" }}>Loading appointments...</p>
+        <p style={{ color: "#AF3E3E", fontWeight: "bold" }}>Loading appointments...</p>
       ) : (
         <>
           <AppointmentForm onAdd={addAppointment} />

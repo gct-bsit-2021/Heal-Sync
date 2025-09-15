@@ -47,10 +47,10 @@ const Moodform = ({ onAdd }) => {
   if (userRole !== 'patient') return null;
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-      <label>Select your mood:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <form className="animated-card"  onSubmit={handleSubmit} style={{ marginBottom: '20px',backgroundColor:"#AF3E3E",paddingTop:"20px",paddingLeft:"50px",paddingRight:"20px" }}>
+      <label style={{fontWeight:"bold",color:"#EAEBD0"}}>Select your mood:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
       <select
-        style={{ color: "skyblue", border: "1px solid brown" }}
+        style={{ color: "skyblue", border: "2px solid #EAEBD0"}}
         value={mood}
         onChange={(e) => setMood(e.target.value)}
         required
@@ -67,15 +67,9 @@ const Moodform = ({ onAdd }) => {
         placeholder="Add notes (optional)..."
         value={note}
         onChange={(e) => setNote(e.target.value)}
+        className="moodselect"
         rows="3"
-        style={{
-          display: 'block',
-          marginTop: '20px',
-          width: '100%',
-          borderRadius: "7px",
-          color: 'brown',
-          border: "2px solid brown"
-        }}
+       
       />
 
       <button className="button-28" type="submit" style={{ marginTop: '19px' }}>

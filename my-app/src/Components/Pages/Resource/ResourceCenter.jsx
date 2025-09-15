@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import ResourceCard from '../Resource/ResourceCard';
 
@@ -67,8 +66,8 @@ const ResourceCenter = () => {
     : Resources.filter(item => item.type === filter);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2 style={{color:"brown",fontWeight:"bold",margin:"20px 20px"}}>Resource Center</h2>
+   <div style={{ padding: '20px' }}>
+      <h2 style={{color:"#AF3E3E",fontWeight:"bold",margin:"20px 20px"}}>Resource Center</h2>
 
       {/* Filter Buttons */}
       <div style={{ marginBottom: '20px' }}>
@@ -81,8 +80,8 @@ const ResourceCenter = () => {
               color: filter === f ? 'white' : 'black',
               padding: '9px 19px',
               borderRadius: '5px',
-              color:"brown",
-              border: "2px solid brown",
+              color:"#AF3E3E",
+              border: "2px solid #AF3E3E",
             }}
             onClick={() => setFilter(f)}
           >

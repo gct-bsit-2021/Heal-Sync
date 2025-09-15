@@ -8,3 +8,85 @@
     padding-left: 30px;
     margin-top: 80px;
 }
+.card-outer{
+    width: 63rem;
+    height:45rem;
+    margin-bottom:40px;
+    border:none;
+    background-color: #EAEBD0;
+}
+.card-inner{     
+    width: 57rem;
+    height:40rem;
+    margin-left:45px;
+    margin-top:38px;
+}
+.ac{
+    font-weight:bold;
+    color:#AF3E3E ;
+}
+.av{
+    width:28rem;
+    font-size:14px;
+    color:  #AF3E3E ;
+    border:none;
+}
+.ik{
+    width:240px;
+    margin-left:100px;  
+}
+.lk{
+    width:220px;
+}
+.lo{
+    font-weight:bold;
+    color: #AF3E3E  ;
+    padding-left:70px;
+}
+.lp{
+    width:34rem;
+    font-size:14px;
+    color: #AF3E3E ;
+    margin-left:70px;
+    border:none;
+}
+
+
+@media  (max-width: 900px) {
+    .card-outer {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-inner {
+        width: 95%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .abouts,
+    .aboutt {
+        flex-direction: column;
+        padding-left: 20px;
+        align-items: center;
+    }
+
+    .av,
+    .lp {
+        width: 90%;
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .ik,
+    .lk {
+        margin-left: 0;
+        width: 200px;
+    }
+
+    .lo {
+        padding-left: 0;
+        text-align: center;
+    }
+}

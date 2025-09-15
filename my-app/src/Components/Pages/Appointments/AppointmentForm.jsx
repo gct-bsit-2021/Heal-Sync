@@ -6,7 +6,7 @@ const AppointmentForm = ({ onAdd }) => {
     title: '',
     date: '',
     time: '',
-    location: '',  // ✅ renamed from patientName to location
+    location: '',  // renamed from patientName to location
     role: 'patient'
   });
 
@@ -17,15 +17,14 @@ const AppointmentForm = ({ onAdd }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onAdd(form);
-    setForm({ title: '', date: '', time: '', location: '', role: 'patient' }); // ✅ reset correctly
+    setForm({ title: '', date: '', time: '', location: '', role: 'patient' }); //  reset correctly
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '30px', padding:"15px" }}>
-      <div style={{paddingLeft:"20px",margin:"7px",color:"brown"}}>
-        <label>Title:&nbsp;</label>
-        <input 
-          style={{border:"2px solid burlywood",borderRadius:"2px",backgroundColor:"brown",color:"burlywood",paddingBottom:"8px"}}  
+   <form onSubmit={handleSubmit} className="fr"  >
+      <div className="fg" >
+        <label>Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input className="fi"  
           name="title"  
           value={form.title} 
           onChange={handleChange} 
@@ -33,21 +32,19 @@ const AppointmentForm = ({ onAdd }) => {
         />
       </div>
 
-      <div style={{paddingLeft:"20px",margin:"7px",color:"brown"}}>
+      <div className="fl" >
         <label>Location:&nbsp;</label>
-        <input 
-          style={{border:"2px solid burlywood",borderRadius:"2px",backgroundColor:"brown",color:"burlywood",paddingBottom:"8px"}}  
-          name="location"   // ✅ changed here
+        <input className="fo"  
+          name="location" 
           value={form.location} 
           onChange={handleChange} 
           required 
         />
       </div>
 
-      <div style={{paddingLeft:"20px",margin:"7px",color:"brown"}}>
-        <label>Date:&nbsp;</label>
-        <input 
-          style={{border:"2px solid burlywood",borderRadius:"2px",backgroundColor:"brown",color:"burlywood",paddingBottom:"8px"}}  
+      <div className="fd" >
+        <label>Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input  className="fj" 
           type="date" 
           name="date" 
           value={form.date} 
@@ -56,19 +53,18 @@ const AppointmentForm = ({ onAdd }) => {
         />
       </div>
 
-      <div style={{paddingLeft:"20px",margin:"7px",color:"brown"}}>
-        <label>Time:&nbsp;</label>
+      <div className="fk" >
+        <label>Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <input 
-          type="time"    
-          style={{border:"2px solid burlywood",borderRadius:"2px",backgroundColor:"brown",color:"burlywood",paddingBottom:"8px"}} 
+          type="time" className="ft"     
           name="time" 
           value={form.time} 
           onChange={handleChange} 
           required 
         />
       </div>
-
-      <button className="button-62" type="submit" style={{ marginLeft:"20px", marginTop:"20px" }}>
+<br/>
+      <button style={{marginLeft:"30px"}} className="button-62" type="submit" >
         Add Appointment
       </button>
     </form>

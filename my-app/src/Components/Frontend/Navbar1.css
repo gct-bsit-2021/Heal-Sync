@@ -35,6 +35,13 @@
     font-size: 2rem;
     flex-grow: 1;
 	padding-bottom: 20px;
+    border: none;
+    outline: none;
+}
+.navbar-logo:focus,
+.navbar-logo:active {
+  outline: none;
+  border: none;
 }
 .nav-menu{
     display: flex;
@@ -69,6 +76,9 @@
 .nav-icon{
     display: none;
 }
+
+
+
 @media screen and (max-width: 960px) {
     .nav-menu{
         display: flex;
@@ -113,5 +123,6 @@
         cursor: pointer;
         color: #EAEBD0 ;
     }
+   
     
 }

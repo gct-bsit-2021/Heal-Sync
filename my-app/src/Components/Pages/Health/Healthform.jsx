@@ -20,22 +20,22 @@ const HealthForm = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '30px', backgroundColor: "brown", paddingTop: "20px" }}>
-      <div style={{ margin: "15px" }}>
-        <label style={{ color: "#EAEBD0", paddingLeft: "20px" }}>Systolic (mmHg):</label>
-        <input type="number" name="systolic" value={form.systolic} onChange={handleChange} required style={{ border: "2px solid #EAEBD0" }} />
+    <form onSubmit={handleSubmit} className="healthform">
+      <div className="healthdiv1 ">
+        <label className="healthlabel1">Systolic (mmHg):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input className="healthinput1" type="number" name="systolic" value={form.systolic} onChange={handleChange} required />
       </div>
-      <div style={{ margin: "15px" }}>
-        <label style={{ color: "#EAEBD0", paddingLeft: "20px" }}>Diastolic (mmHg):</label>
-        <input type="number" name="diastolic" value={form.diastolic} onChange={handleChange} required style={{ border: "2px solid #EAEBD0" }} />
+      <div className="healthdiv1" >
+        <label className="healthlabel1" >Diastolic (mmHg):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input className="healthinput1" type="number" name="diastolic" value={form.diastolic} onChange={handleChange} required  />
       </div>
-      <div style={{ margin: "15px" }}>
-        <label style={{ color: "#EAEBD0", paddingLeft: "20px" }}>Weight (kg):</label>
-        <input type="number" name="weight" value={form.weight} onChange={handleChange} required style={{ border: "2px solid #EAEBD0" }} />
+      <div className="healthdiv1" >
+        <label className="healthlabel1" >Weight (kg):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input className="healthinput1" type="number" name="weight" value={form.weight} onChange={handleChange} required  />
       </div>
-      <div style={{ margin: "15px" }}>
-        <label style={{ color: "#EAEBD0", paddingLeft: "20px" }}>Glucose (mg/dL):</label>
-        <input type="number" name="glucose" value={form.glucose} onChange={handleChange} required style={{ border: "2px solid #EAEBD0" }} />
+      <div className="healthdiv1"  >
+        <label className="healthlabel1" >Glucose (mg/dL):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input className="healthinput1" type="number" name="glucose" value={form.glucose} onChange={handleChange} required/>
       </div>
       <button type="submit" className="button-28" style={{ marginTop: '30px', marginLeft: "35px" }}>Add Record</button>
     </form>

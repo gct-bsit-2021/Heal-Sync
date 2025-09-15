@@ -3,8 +3,8 @@ import React from 'react'
 const ResourceCard = ({ title, description, type, link }) => {
   return (
     <>
-      <div className="animated-card" style={{
-        border: '1px solid brown',
+     <div className="animated-card" style={{
+        border: '1px solid #AF3E3E',
         borderRadius: '12px',
         padding: '15px',
         margin: '10px',
@@ -14,7 +14,7 @@ const ResourceCard = ({ title, description, type, link }) => {
         marginLeft:"10px",
         boxShadow:"0 0 10px rgba(0, 123, 255, 0.5)",
         backgroundColor:"#EAEBD0",
-        color:"brown"
+        color:"#AF3E3E"
 
 
       }}>
@@ -25,7 +25,7 @@ const ResourceCard = ({ title, description, type, link }) => {
     onClick={() => window.open(link, '_blank')}
     style={{
       padding: '8px 16px',
-      backgroundColor: 'brown',
+      backgroundColor: '#AF3E3E',
       color: 'white',
       border: 'none',
       borderRadius: '6px',
@@ -42,7 +42,7 @@ const ResourceCard = ({ title, description, type, link }) => {
       style={{
         marginTop:"10px",
         padding: '8px 16px',
-      backgroundColor: 'brown',
+      backgroundColor: '#AF3E3E',
       color: 'white',
       border: 'none',
       borderRadius: '6px',
@@ -59,7 +59,7 @@ const ResourceCard = ({ title, description, type, link }) => {
       style={{
         marginTop:"10px",
         padding: '8px 16px',
-      backgroundColor: 'brown',
+      backgroundColor: '#AF3E3E',
       color: 'white',
       border: 'none',
       borderRadius: '6px',
@@ -70,7 +70,6 @@ const ResourceCard = ({ title, description, type, link }) => {
     </button>
 
       </div>
-
     </>
   )
 }

@@ -1,13 +1,44 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import { NavLink } from "react-router-dom";
 import "./Navbar1.css";
 import { CgClose, CgMenu } from "react-icons/cg";
+import { FaMoon, FaSun } from "react-icons/fa";
 const Navbar = () => {
  const [click, setClick] =useState(false);
+  const [dark, setDark] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
   const handleClick = ()=>{
     setClick(!click)
   }
+ 
+
+  useEffect(() => {
+    if (localStorage.getItem("theme") === "dark") {
+      setDark(true);
+      document.body.classList.add("dark");
+    }
+  }, [])
+
+  const toggleTheme = () => {
+    setDark(!dark);
+    if (!dark) {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }
+
   
   return (
     <>
@@ -15,12 +46,11 @@ const Navbar = () => {
 
         <nav className="navbar">
         <div className="nav-container">
-          <NavLink 
-          exact to='/'
+          <NavLink
+          
           className='nav-logo'
           >
           HEAL SYNC
-           
           </NavLink>
                <ul className={click ? "nav-menu active" : 'nav-menu'}>
 
@@ -58,6 +88,7 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
+              
               <NavLink 
               exact to ='/login'
               activeClassName = 'active'
@@ -66,17 +97,18 @@ const Navbar = () => {
               
               >
                 Login To Heal Sync
-              </NavLink>
+              </NavLink>  
+
             </li>
+    
           </ul>
-           
-           
+          
         
          <div className="nav-icon" onClick={handleClick}>
         {!click ? (
-          <CgMenu/> // Menu open icon
+          <CgMenu/> 
         ) : (
-          <CgClose/> // Close icon
+          <CgClose/> 
         )}
       </div>
           </div>

@@ -1,9 +1,5 @@
-// src/Components/Logging.js
 import React, { useState } from "react";
 import Navbar from "../Frontend/Navbar";
-import { FaFacebookF } from "react-icons/fa";
-import { CiTwitter } from "react-icons/ci";
-import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../utils/authService";
 
@@ -36,7 +32,7 @@ export default function Logging() {
 
   return (
     <>
-      <Navbar />
+     <Navbar />
       <div className="login-container">
         <form onSubmit={handleSubmit} className="login-form">
           <h2>Family Member Login</h2>
@@ -65,7 +61,7 @@ export default function Logging() {
             type="button"
             style={{
               background: "#EAEBD0",
-              color: "brown",
+              color: "#AF3E3E",
               padding: "8px 16px",
               marginTop: "10px",
               border: "none",
@@ -84,34 +80,7 @@ export default function Logging() {
           >
             Sign up
           </a>
-
-          <div className="col" style={{ paddingLeft: "10px" }}>
-            <a
-              href="#"
-              style={{ border: "1px solid #EAEBD0", color: "white" }}
-              className="fb btn"
-            >
-              <FaFacebookF /> Login with Facebook
-            </a>
-            <br />
-            <br />
-            <a
-              href="#"
-              style={{ border: "1px solid #EAEBD0", color: "white" }}
-              className="twitter btn"
-            >
-              <CiTwitter /> Login with Twitter
-            </a>
-            <br />
-            <br />
-            <a
-              href="#"
-              style={{ border: "1px solid #EAEBD0", color: "white" }}
-              className="google btn"
-            >
-              <FaGoogle /> Login with Google
-            </a>
-          </div>
+          
         </form>
       </div>
     </>

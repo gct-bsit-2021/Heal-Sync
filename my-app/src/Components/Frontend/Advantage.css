@@ -1,28 +1,128 @@
+.car {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.car .pg {
+  color: #AF3E3E;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.car .hi {
+  color: #AF3E3E;
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.car .hi:hover {
+  color: #EAEBD0;
+}
+
+.car .pe {
+  font-size: 15px;
+  color: #AF3E3E;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+}
+
+.car .pe:hover {
+  color: #EAEBD0;
+}
+
+.advantage {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  margin-bottom: 50px;
+}
+.adv-card {
+  width: 13rem;
+  max-width: 90%;
+  height: auto;
+  background-color: #EAEBD0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.adv-img {
+  width: 60px;
+  margin-top: 20px;
+}
 .advantage{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    border-radius: 2px;
-    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  cursor: pointer;
 }
-.car .pg{
-    padding-left: 450px;
-    color: brown;
+.adv-card:hover{
+   transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
-.car .hi{
-    padding-left: 400px;
-    color: brown;
+.adv-title {
+  color:#AF3E3E ;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 10px 0 5px 0;
+  transition: transform 0.3s;
+  transform-style: preserve-3d;
+  border-radius: 12px;
+  background-color: #EAEBD0;
+  
 }
-.hi:hover{
-    color:  #EAEBD0;
+.adv-title:hover {
+  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
 }
-.car .pe{
-    padding-left:200px;
-    padding-bottom: 20px;
+
+.adv-text {
+  font-size: 14px;
+  color: #AF3E3E;
+  padding: 0 10px;
+}
+
+@media (max-width: 900px) {
+  .car .hi {
+    font-size: 24px;
+  }
+  .car .pe {
+    font-size: 14px;
+    max-width: 90%;
+  }
+  .adv-card {
+    width: 45%; 
+  }
+  .adv-img {
+    width: 50px;
+  }
+  .adv-title {
     font-size: 15px;
-    color: brown;
+  }
+  .adv-text {
+    font-size: 13px;
+  }
 }
-.pe:hover{
-    color:  #EAEBD0;
+
+
+@media (max-width: 480px) {
+  .car .hi {
+    font-size: 20px;
+  }
+  .car .pe {
+    font-size: 13px;
+  }
+  .adv-card {
+    width: 90%; 
+  }
+  .adv-img {
+    width: 40px;
+  }
+  .adv-title {
+    font-size: 14px;
+  }
+  .adv-text {
+    font-size: 12px;
+  }
 }

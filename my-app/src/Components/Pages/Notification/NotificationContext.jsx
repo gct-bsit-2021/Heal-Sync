@@ -11,7 +11,7 @@ export const NotificationsProvider = ({ children }) => {
     const token = localStorage.getItem("token"); // Make sure user is logged in
     if (!token) return;
 
-    // 1️⃣ Fetch existing notifications safely
+    // Fetch existing notifications safely
     fetch("http://localhost:5000/api/notifications/calendar", {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -29,7 +29,7 @@ export const NotificationsProvider = ({ children }) => {
       })
       .catch(err => console.error("Fetch error:", err));
 
-    // 2️⃣ Setup socket connection for real-time notifications
+    //  Setup socket connection for real-time notifications
     const socket = io("http://localhost:5000", { auth: { token } });
 
     socket.on("notification", data => {
