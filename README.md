@@ -108,7 +108,7 @@ cd my-app
 npm install
 
 ```
-### 2️⃣ **Configure Database**
+###  **Configure Database**
 
 * Heal Sync uses MongoDB. Update your backend/config/db.js with the connection string:
 
@@ -118,7 +118,7 @@ const MONGODB_URI = "mongodb://localhost:5000/heal_sync";
 }
 ```
 
-### 3️⃣ **Build & Run**
+###  **Build & Run**
 *Backend (API server):
 
 ```bash
@@ -134,7 +134,7 @@ npm start
 
 ```
 
-### 4️⃣ **Setup Roles and Admin User**
+###  **Setup Roles and Admin User**
 
 *By default, insert initial roles and an admin user in MongoDB:
 
