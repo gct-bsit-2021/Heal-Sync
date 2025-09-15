@@ -19,7 +19,7 @@
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### **Tech Stack**
 
@@ -33,157 +33,136 @@
 
 ---
 
-## 👥 Roles & Permissions
+##  Features
 
-| Role                         | Permissions                                                                                                                                   |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Admin**                    | Manage Principals, HoDs, Teachers, and Students. Modify upper management and global settings. View full activity logs.                        |
-| **Principal / Management**   | Post announcements visible to all users, oversee reports and logs, manage department-level data.                                              |
-| **Head of Department (HoD)** | Add, edit, or remove students/teachers for their department, oversee class and department communications, post department-only announcements. |
-| **Teacher**                  | Access class groups, post assignments, reply to student queries, share files.                                                                 |
-| **Student**                  | Access class groups and private student-only batch groups, communicate with peers and teachers, share files and collaborate on projects.      |
+**User Management**
 
----
+*The system allows patients and family members to create and manage separate accounts.
+*Family members can edit care plans and monitor patient logs.
 
-## ✨ Features
+**Mood & Behaviour Tracking**
 
-✅ **Role-Based Authentication & Authorization**
+*The mood and behavior tracking feature enables patients to log their daily mood and behavioral changes. 
+*The system analyzes patterns and alerts family members if abnormal trends are detected.
 
-* ASP.NET Core Identity integrated with a custom `ApplicationUser` and `User_Profile` table.
-* Email + unique username-based login.
-* Secure password storage and role management.
 
-✅ **Group Management**
+**Health Monitoring**
 
-* Auto-generated groups for classes, departments, and private student batches.
-* Dynamic group creation for projects and discussions.
-* Stored procedures (`CreateBatch`, `DeleteBatch`) for managing batch tables dynamically.
+*The health monitoring feature allows patients to manually log vital health parameters like weight, glucose levels, and blood pressure.
+*The system generates trend analysis reports for family members to track patient health
 
-✅ **Real-Time Chat & File Sharing**
 
-* Chat system using **SignalR** for instant communication.
-* File uploads with per-group access control.
+**Shared Calendars & Appointments**
 
-✅ **Announcements & Notifications**
+*The shared calendar and appointment management feature enables patients and family members to schedule, update, and track medical appointments with automated reminders.
 
-* Principals/management can create **global announcements** (read-only).
-* HoDs can create **department-specific announcements**.
-* Students and teachers receive instant notifications for updates.
 
-✅ **Profile Management**
+**Emergency Alerts & SOS Button**
 
-* Users can view/edit their profile with profile picture support.
-* Securely update information without forcing profile picture re-upload.
+*The emergency alert and SOS button feature allows patients to send an immediate distress signal to family members with their live location in case of an emergency
 
-✅ **Search Functionality**
 
-* Fast and efficient user search using an API endpoint.
-* Search by name, department, or batch.
+**Task & Plan Management**
+*The task and plan management feature allows family members to assign and track care-related tasks for patients, ensuring timely completion of essential health activities
 
-✅ **Activity Logs & Reports**
 
-* Admins & Principals can access high-level reports.
-* HoDs can view department-level activities.
+**Notifications & Alerts**
+*The notifications and alerts feature ensures that patients and family members receive timely reminders for appointments, medications, and emergency situations.
+
+
+**Live Location Tracking**
+*The live location tracking feature allows family members to monitor the real-time location of a patient in case of an emergency or when needed.
+
+
+**Resource Center**
+*The resource center provides patients and family members with educational materials such as articles, videos, and health-related resources.
+
+
+**Progress Tracking & Reports**
+*The progress tracking and reports feature allows patients and family members to generate and review health trends, completed tasks, and overall progress
 
 ---
 
-## 🗂️ Project Structure (ASP.NET Core MVC)
+##  Setup Instructions
 
-```
-Zenithix/
- ├── Controllers/
- │    ├── AccountController.cs
- │    ├── AdminController.cs
- │    ├── AnnouncementController.cs
- │    ├── ChatController.cs
- │    └── ProfileController.cs
- │
- ├── Models/
- │    ├── ApplicationUser.cs
- │    ├── User_Profile.cs
- │    ├── Group.cs
- │    ├── Message.cs
- │    └── FileUpload.cs
- │
- ├── Views/
- │    ├── Account/
- │    ├── Admin/
- │    ├── Chat/
- │    ├── Announcement/
- │    └── Shared/
- │
- ├── wwwroot/
- │    ├── css/
- │    ├── js/
- │    └── uploads/
- │
- ├── Data/
- │    ├── ApplicationDbContext.cs
- │    └── Repositories/
- │
- └── Program.cs / Startup.cs
-```
-
----
-
-## 🛠️ Setup Instructions
-
-### 1️⃣ **Clone Repository**
+###  **Clone Repository**
 
 ```bash
-git clone https://github.com/your-username/zenithix.git
-cd zenithix
+git clone https://github.com/your-username/heal-sync.git
+cd heal-sync
+
 ```
 
+###  **Clone Repository**
+Backend (Node.js + Express):
+
+```bash
+cd backend
+npm install
+
+```
+Frontend (React.js):
+
+```bash
+cd my-app
+npm install
+
+```
 ### 2️⃣ **Configure Database**
 
-* Update `appsettings.json` with your SQL Server connection string.
+* Heal Sync uses MongoDB. Update your backend/config/db.js with the connection string:
 
-```jsonc
-"ConnectionStrings": {
-  "DefaultConnection": "Server=.;Database=ZenithixDB;Trusted_Connection=True;"
+```js
+const MONGODB_URI = "mongodb://localhost:5000/heal_sync";
+
 }
 ```
 
 ### 3️⃣ **Build & Run**
+*Backend (API server):
 
 ```bash
-dotnet restore
-dotnet build
-dotnet run
+cd backend
+npm run dev
+
+
+*Frontend (React app):
+
+cd my-app
+npm install react-scripts
+npm start
+
 ```
 
 ### 4️⃣ **Setup Roles and Admin User**
 
-Run the seed data script (or initialize manually) to create:
+*By default, insert initial roles and an admin user in MongoDB:
 
-* Admin account
-* Default roles: Admin, Principal, HoD, Teacher, Student
+*roles collection
+```json
+[
+  { "name": "Admin" },
+  { "name": "Doctor" },
+  { "name": "Patient" },
+  { "name": "Family" }
+]
 
----
+````
+*users collection (example admin user):
+```json
+{
+  "username": "admin",
+  "email": "admin@healsync.com",
+  "password": "<hashed-password>",
+  "role": "Admin"
+}
+```
+##  Testing
 
-## 🧪 Testing
-
-* ✅ Unit Testing: Models and controllers tested with xUnit.
-* ✅ Integration Testing: Database queries validated using a staging DB.
-* ✅ Manual Testing: Verified all role-based features, group chat, and profile updates.
-
----
-
-## 🚀 Future Enhancements
-
-* ✅ Better UI/UX with full Bootstrap + Tailwind styling.
-* ✅ AI Chatbot for basic student inquiries.
-* ✅ Video calls and voice chat for real-time meetings.
-* ✅ Advanced search with filters (department, year, subject).
-* ✅ Mobile-friendly responsive design.
-
----
-
-## 👨‍💻 Author
-
-**Talha Ellahi**
-📧 [wasadasad323@gmail.com](mailto:wasadasad323@gmail.com)
-💻 Full-Stack ASP.NET Developer | Passionate about scalable, secure applications
+*  Unit Testing:Each individual module (e.g., user authentication, mood logging, health data submission) is tested independently once coding is completed. This ensures          that the internal logic of each module works as expected
+*  Integration Testing: Integration testing verifies that modules interact correctly with one another. For example, it checks whether the mood logging module correctly          links with the user profile and database components.
 
 ---
+
+
+
